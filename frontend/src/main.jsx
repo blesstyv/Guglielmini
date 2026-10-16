@@ -20,6 +20,8 @@ import './index.css'
 
 import './styles/refinements.css'
 
+import './styles/guglielmini-theme.css'
+
 
 createRoot(
   document.getElementById('root'),

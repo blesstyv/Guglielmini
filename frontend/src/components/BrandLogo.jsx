@@ -1,8 +1,22 @@
+import {
+  useId,
+} from 'react'
+
+
 function BrandLogo({
   variant = 'full',
   className = '',
 }) {
-  const iconOnly = variant === 'icon'
+  const iconOnly =
+    variant === 'icon'
+
+  const gradientId =
+    useId()
+      .replaceAll(':', '')
+
+  const accentGradient =
+    `guglielminiAccent-${gradientId}`
+
 
   return (
     <div
@@ -12,38 +26,18 @@ function BrandLogo({
           : 'brand-logo--full'
       } ${className}`}
     >
+
       <svg
         className="brand-logo__symbol"
         viewBox="0 0 120 140"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
+
         <defs>
-          <linearGradient
-            id="styveenGradient"
-            x1="15%"
-            y1="10%"
-            x2="90%"
-            y2="90%"
-          >
-            <stop
-              offset="0%"
-              stopColor="#ed2b83"
-            />
-
-            <stop
-              offset="48%"
-              stopColor="#8c35c5"
-            />
-
-            <stop
-              offset="100%"
-              stopColor="#d0a32f"
-            />
-          </linearGradient>
 
           <linearGradient
-            id="styveenSGradient"
+            id={accentGradient}
             x1="0%"
             y1="0%"
             x2="100%"
@@ -51,93 +45,135 @@ function BrandLogo({
           >
             <stop
               offset="0%"
-              stopColor="#f33591"
+              stopColor="#ff2b93"
             />
 
             <stop
-              offset="50%"
-              stopColor="#9d36d1"
+              offset="58%"
+              stopColor="#a52be0"
             />
 
             <stop
               offset="100%"
-              stopColor="#e2af36"
+              stopColor="#d9ef29"
             />
           </linearGradient>
+
         </defs>
 
+
         <polygon
-          points="60,5 106,31 106,87 60,113 14,87 14,31"
-          fill="#09090d"
-          stroke="url(#styveenGradient)"
+          points="
+            60,5
+            105,30
+            105,88
+            60,114
+            15,88
+            15,30
+          "
+          fill="#060608"
+          stroke={`url(#${accentGradient})`}
           strokeWidth="5"
         />
 
+
         <polygon
-          points="60,15 97,36 97,82 60,103 23,82 23,36"
+          points="
+            60,15
+            95,35
+            95,82
+            60,102
+            25,82
+            25,35
+          "
           fill="none"
-          stroke="#24232a"
-          strokeWidth="3"
+          stroke="#45454c"
+          strokeWidth="2.5"
         />
+
 
         <path
           d="
-            M84 32
-            H50
-            C39 32 31 39 31 49
-            C31 59 39 65 50 65
-            H70
-            C75 65 78 68 78 72
-            C78 76 75 79 69 79
-            H34
-            L26 92
-            H71
-            C83 92 91 83 91 72
-            C91 60 83 52 70 52
-            H50
-            C46 52 43 50 43 47
-            C43 44 46 42 50 42
-            H77
+            M82 40
+            H57
+            C44 40 36 48 36 60
+            C36 72 44 80 57 80
+            H73
+            V70
+            H58
+            C51 70 47 66 47 60
+            C47 54 51 50 58 50
+            H82
+            Z
+
+            M73 63
+            H91
+            V89
+            L80 95
+            V73
+            H73
             Z
           "
-          fill="url(#styveenSGradient)"
+          fill={`url(#${accentGradient})`}
         />
+
+
+        <rect
+          x="31"
+          y="96"
+          width="34"
+          height="3"
+          rx="1.5"
+          fill="#f4f4f4"
+          opacity="0.8"
+        />
+
+
+        <rect
+          x="69"
+          y="96"
+          width="17"
+          height="3"
+          rx="1.5"
+          fill="#d9ef29"
+        />
+
 
         <circle
           cx="60"
           cy="19"
-          r="3.5"
-          fill="#d0a32f"
+          r="3"
+          fill="#d9ef29"
         />
 
-        <circle
-          cx="93"
-          cy="40"
-          r="3"
-          fill="#ed2b83"
-        />
-
-        <circle
-          cx="27"
-          cy="79"
-          r="3"
-          fill="#792eb1"
-        />
 
         <polygon
-          points="48,119 72,119 60,134"
-          fill="#d0a32f"
+          points="
+            49,120
+            71,120
+            60,134
+          "
+          fill="#ff2b93"
         />
+
       </svg>
 
+
       {!iconOnly && (
+
         <div className="brand-logo__text">
-          <strong>STYVEEN</strong>
-          <span>LABS</span>
+
+          <strong>
+            GUGLIELMINI
+          </strong>
+
         </div>
+
       )}
+
     </div>
   )
 }
+
 
 export default BrandLogo

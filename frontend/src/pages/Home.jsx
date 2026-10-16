@@ -1,16 +1,21 @@
 import {
   ArrowRight,
-  CheckCircle2,
+  Check,
+  Cpu,
   Gauge,
+  HardDrive,
+  MemoryStick,
   ShieldCheck,
   Wrench,
+  Zap,
 } from 'lucide-react'
 
 import {
   Link,
 } from 'react-router-dom'
 
-import PcCard from '../components/PcCard.jsx'
+import Reveal
+  from '../components/Reveal.jsx'
 
 import {
   pcs,
@@ -18,241 +23,147 @@ import {
 
 
 function Home() {
-  const featuredPc = pcs[0]
+  const pc =
+    pcs.find(
+      (item) =>
+        item.status === 'Disponible',
+    ) || pcs[0]
+
 
   return (
     <>
 
-      {/* HERO PRINCIPAL */}
+      {/* ======================================
+          HERO
+      ====================================== */}
 
-      <section className="home-hero home-hero-centered">
+      <section className="g-hero">
 
-        <div className="home-hero-glow" />
-
-        <div className="container hero-centered-container">
-
-          <div className="hero-centered-content">
-
-            <span className="eyebrow">
-              STYVEEN LABS // HARDWARE CON IDENTIDAD
-            </span>
+        <div className="g-hero-orb" />
 
 
-            <h1 className="hero-centered-title">
+        <div className="container g-hero-grid">
 
-              TU PC.
+          <Reveal
+            direction="left"
+          >
 
-              <span>
-                TU NIVEL.
+            <div className="g-hero-content">
+
+              <span className="g-label">
+                GUGLIELMINI
               </span>
 
-            </h1>
+
+              <h1>
+                Hardware
+                <br />
+
+                <span>
+                  Probado y optimizado
+                </span>
+              </h1>
 
 
-            <p className="hero-centered-description">
-
-              Computadores seleccionados, ensamblados y
-              validados para distintos tipos de usuario,
-              desde configuraciones equilibradas hasta
-              futuros equipos de alto rendimiento.
-
-            </p>
+              <p>
+                PCs armados,
+                configurados y sometidos
+                a pruebas reales antes
+                de publicarse.
+              </p>
 
 
-            <div className="home-hero-actions hero-centered-actions">
+              <div className="g-hero-actions">
 
-              <Link
-                to="/pcs"
-                className="primary-button"
-              >
-                VER PCs DISPONIBLES
+                <Link
+                  to={`/pcs/${pc.slug}`}
+                  className="primary-button"
+                >
+                  VER PC DISPONIBLE
 
-                <ArrowRight size={18} />
-              </Link>
+                  <ArrowRight
+                    size={18}
+                  />
+                </Link>
 
 
-              <Link
-                to="/about"
-                className="secondary-button"
-              >
-                CONOCER STYVEEN LABS
-              </Link>
+                <Link
+                  to="/services"
+                  className="secondary-button"
+                >
+                  SERVICIOS
+                </Link>
+
+              </div>
+
+
+              <div className="g-mini-proof">
+
+                <span>
+                  <ShieldCheck
+                    size={17}
+                  />
+                  Validado
+                </span>
+
+                <span>
+                  <Gauge
+                    size={17}
+                  />
+                  Benchmarks reales
+                </span>
+
+                <span>
+                  <Wrench
+                    size={17}
+                  />
+                  Upgrade posible
+                </span>
+
+              </div>
 
             </div>
 
-
-            <div className="hero-benefits hero-benefits-centered">
-
-              <div>
-
-                <Gauge size={17} />
-
-                <span>
-                  Rendimiento real
-                </span>
-
-              </div>
+          </Reveal>
 
 
-              <div>
-
-                <ShieldCheck size={17} />
-
-                <span>
-                  Probado y validado
-                </span>
-
-              </div>
-
-
-              <div>
-
-                <Wrench size={17} />
-
-                <span>
-                  Preparado para mejoras
-                </span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          {/* PRINCIPIOS */}
-
-          <div className="brand-principles-centered">
-
-            <article className="principle-card">
-
-              <div className="principle-icon">
-                <CheckCircle2 size={20} />
-              </div>
-
-              <div>
-
-                <strong>
-                  Componentes seleccionados
-                </strong>
-
-                <p>
-                  Configuraciones coherentes con el nivel,
-                  objetivo y precio de cada computador.
-                </p>
-
-              </div>
-
-            </article>
-
-
-            <article className="principle-card">
-
-              <div className="principle-icon">
-                <ShieldCheck size={20} />
-              </div>
-
-              <div>
-
-                <strong>
-                  Validación antes de entregar
-                </strong>
-
-                <p>
-                  Revisión de estabilidad, temperaturas
-                  y funcionamiento general del equipo.
-                </p>
-
-              </div>
-
-            </article>
-
-
-            <article className="principle-card">
-
-              <div className="principle-icon">
-                <Wrench size={20} />
-              </div>
-
-              <div>
-
-                <strong>
-                  Pensados para evolucionar
-                </strong>
-
-                <p>
-                  Consideramos futuras mejoras desde
-                  la selección inicial de componentes.
-                </p>
-
-              </div>
-
-            </article>
-
-          </div>
-
-
-          <Link
-            to="/proceso-armado"
-            className="hero-process-link"
+          <Reveal
+            direction="right"
+            delay={150}
           >
-            CONOCER NUESTRO PROCESO DE ARMADO
-
-            <ArrowRight size={16} />
-          </Link>
-
-        </div>
-
-      </section>
-
-
-
-      {/* PCs DISPONIBLES */}
-
-      <section className="home-products">
-
-        <div className="container home-products-centered">
-
-          <header className="section-header-centered">
-
-            <span className="eyebrow">
-              DISPONIBLES AHORA
-            </span>
-
-
-            <h2>
-              NUESTROS
-              <span> PCs.</span>
-            </h2>
-
-
-            <p>
-              Solo publicamos computadores que realmente
-              están disponibles para la venta.
-            </p>
-
-          </header>
-
-
-          <div className="home-product-grid home-product-grid-centered">
-
-            <PcCard pc={featuredPc} />
-
-          </div>
-
-
-          <div className="section-action-centered">
 
             <Link
-              to="/pcs"
-              className="section-link"
+              to={`/pcs/${pc.slug}`}
+              className="hero-product-visual"
             >
-              VER CATÁLOGO COMPLETO
 
-              <ArrowRight size={17} />
+              <div className="hero-product-glow" />
+
+
+              <img
+                src={pc.images[0]}
+                alt={pc.name}
+              />
+
+
+              <div className="hero-product-price">
+
+                <span>
+                  PC-001
+                </span>
+
+                <strong>
+                  $
+                  {pc.price.toLocaleString(
+                    'es-CL',
+                  )}
+                </strong>
+
+              </div>
+
             </Link>
 
-          </div>
+          </Reveal>
 
         </div>
 
@@ -260,38 +171,244 @@ function Home() {
 
 
 
-      {/* PROCESO DE ARMADO */}
+      {/* ======================================
+          MOVING STRIP
+      ====================================== */}
 
-      <section className="home-lab-section">
+      <section className="tech-strip">
 
-        <div className="container home-lab-centered">
+        <div className="tech-strip-track">
 
-          <span className="eyebrow">
-            STYVEEN LABS // PROCESO DE ARMADO
-          </span>
+          <TechItem
+            icon={<Cpu />}
+            text="RYZEN 5 5600G"
+          />
+
+          <TechItem
+            icon={<MemoryStick />}
+            text="16 GB DUAL CHANNEL"
+          />
+
+          <TechItem
+            icon={<HardDrive />}
+            text="NVMe 1 TB"
+          />
+
+          <TechItem
+            icon={<Zap />}
+            text="850 W GOLD"
+          />
+
+          <TechItem
+            icon={<Gauge />}
+            text="BENCHMARKS REALES"
+          />
+
+          <TechItem
+            icon={<ShieldCheck />}
+            text="0 ERRORES EN PRUEBAS"
+          />
 
 
-          <h2>
-            ARMA.
-            <span> CONFIGURA. </span>
-            PRUEBA.
-          </h2>
+          {/* duplicado para loop */}
+
+          <TechItem
+            icon={<Cpu />}
+            text="RYZEN 5 5600G"
+          />
+
+          <TechItem
+            icon={<MemoryStick />}
+            text="16 GB DUAL CHANNEL"
+          />
+
+          <TechItem
+            icon={<HardDrive />}
+            text="NVMe 1 TB"
+          />
+
+          <TechItem
+            icon={<Zap />}
+            text="850 W GOLD"
+          />
+
+        </div>
+
+      </section>
 
 
-          <p className="lab-centered-description">
 
-            Cada PC pasa por un proceso de montaje,
-            configuración y revisión antes de
-            considerarse listo para su entrega.
+      {/* ======================================
+          PC DESTACADO
+      ====================================== */}
 
-          </p>
+      <section className="featured-machine">
+
+        <div className="container featured-machine-grid">
+
+          <Reveal>
+
+            <div className="featured-machine-image">
+
+              <img
+                src={pc.images[1]}
+                alt={pc.name}
+              />
+
+              <span className="image-index">
+                01 / EQUIPO DISPONIBLE
+              </span>
+
+            </div>
+
+          </Reveal>
+
+
+          <Reveal
+            direction="right"
+          >
+
+            <div className="featured-machine-info">
+
+              <span className="g-label">
+                DISPONIBLE
+              </span>
+
+
+              <h2>
+                {pc.name}
+              </h2>
+
+
+              <p>
+                {pc.shortDescription}
+              </p>
+
+
+              <div className="featured-spec-line">
+
+                {pc.highlights.map(
+                  (item) => (
+
+                    <div
+                      key={item.label}
+                    >
+
+                      <small>
+                        {item.label}
+                      </small>
+
+                      <strong>
+                        {item.value}
+                      </strong>
+
+                    </div>
+
+                  ),
+                )}
+
+              </div>
+
+
+              <div className="featured-price">
+
+                <small>
+                  PRECIO
+                </small>
+
+                <strong>
+                  $
+                  {pc.price.toLocaleString(
+                    'es-CL',
+                  )}
+                </strong>
+
+              </div>
+
+
+              <Link
+                to={`/pcs/${pc.slug}`}
+                className="text-action"
+              >
+
+                EXPLORAR EQUIPO
+
+                <ArrowRight size={17} />
+
+              </Link>
+
+            </div>
+
+          </Reveal>
+
+        </div>
+
+      </section>
+
+
+
+      {/* ======================================
+          PROCESO — SIN TARJETAS
+      ====================================== */}
+
+      <section className="minimal-process">
+
+        <div className="container">
+
+          <Reveal>
+
+            <header className="minimal-section-header">
+
+              <span className="g-label">
+                PROCESO
+              </span>
+
+              <h2>
+                Antes de vender,
+                <span>
+                  {' '}comprobamos.
+                </span>
+              </h2>
+
+            </header>
+
+          </Reveal>
+
+
+          <div className="process-line">
+
+            <ProcessStep
+              number="01"
+              title="Armado"
+              text="Montaje y compatibilidad."
+            />
+
+            <ProcessStep
+              number="02"
+              title="Configuración"
+              text="BIOS, Windows y drivers."
+            />
+
+            <ProcessStep
+              number="03"
+              title="Pruebas"
+              text="RAM, CPU, SSD y temperaturas."
+            />
+
+            <ProcessStep
+              number="04"
+              title="Gaming"
+              text="Rendimiento real en juegos."
+            />
+
+          </div>
 
 
           <Link
             to="/proceso-armado"
-            className="secondary-button"
+            className="text-action process-action"
           >
-            VER PROCESO DE ARMADO
+            VER PROCESO COMPLETO
 
             <ArrowRight size={17} />
           </Link>
@@ -300,7 +417,97 @@ function Home() {
 
       </section>
 
+
+
+      {/* ======================================
+          SERVICES CTA
+      ====================================== */}
+
+      <section className="home-services-cta">
+
+        <div className="container services-cta-layout">
+
+          <div>
+
+            <span className="g-label">
+              SERVICIOS
+            </span>
+
+            <h2>
+              ¿Ya tienes un PC?
+            </h2>
+
+            <p>
+              También realizamos armado,
+              mantenimiento, optimización
+              y upgrades.
+            </p>
+
+          </div>
+
+
+          <Link
+            to="/services"
+            className="primary-button"
+          >
+            VER SERVICIOS
+
+            <ArrowRight size={18} />
+          </Link>
+
+        </div>
+
+      </section>
+
     </>
+  )
+}
+
+
+function TechItem({
+  icon,
+  text,
+}) {
+  return (
+    <div className="tech-strip-item">
+      {icon}
+      <span>{text}</span>
+    </div>
+  )
+}
+
+
+function ProcessStep({
+  number,
+  title,
+  text,
+}) {
+  return (
+    <Reveal>
+
+      <div className="process-line-item">
+
+        <span>
+          {number}
+        </span>
+
+        <div>
+
+          <Check size={17} />
+
+          <strong>
+            {title}
+          </strong>
+
+          <p>
+            {text}
+          </p>
+
+        </div>
+
+      </div>
+
+    </Reveal>
   )
 }
 

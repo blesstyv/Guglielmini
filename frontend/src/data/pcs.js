@@ -1,79 +1,182 @@
+import pc001Interior1
+  from '../assets/images/pc-001/pc-001-interior1.png'
+
+import pc001Interior2
+  from '../assets/images/pc-001/pc-001-interior2.png'
+
+import pc001Kit
+  from '../assets/images/pc-001/pc-001-kit.png'
+
+import pc001Setup
+  from '../assets/images/pc-001/pc-001-setup.png'
+
 export const pcs = [
   {
     id: 1,
 
-    slug: 'pc-gama-media-001',
+    slug:
+      'pc-001-ryzen-5-5600g',
 
-    code: 'PC // 001',
+    code:
+      'GUGLIELMINI // PC-001',
 
-    name: 'PC GAMA MEDIA',
+    name:
+      'PC GAMER RYZEN 5 5600G',
 
-    category: 'Gama Media',
+    category:
+      'PC Gamer de entrada',
 
-    status: 'Disponible',
+    status:
+      'Disponible',
 
-    stock: 1,
+    stock:
+      1,
 
-    price: 749990,
+    price:
+      750000,
 
-    images: [],
+    condition:
+      'Equipo armado y probado',
+
+    images: [
+      pc001Setup,
+      pc001Interior1,
+      pc001Interior2,      
+      pc001Kit,
+    ],
 
     shortDescription:
-      'PC equilibrado para gaming, estudio, y productividad.',
+      'Ryzen 5 5600G · 16 GB RGB · NVMe 1 TB · Fuente 850 W Gold',
 
     description:
-      'Equipo ensamblado para ofrecer una experiencia equilibrada en gaming, estudio, y uso diario. Su Ryzen 5 5600G permite utilizar gráficos integrados desde el primer día y deja la plataforma preparada para incorporar una tarjeta gráfica dedicada en el futuro.',
+      'Equipo preparado para gaming competitivo, uso diario y futuras mejoras de hardware. Actualmente utiliza gráficos Radeon Vega 7 integrados.',
 
     quickSpecs: [
       'Ryzen 5 5600G',
-      '16 GB RAM',
-      'SSD NVMe 1 TB',
+      '16 GB DDR4 Dual Channel',
+      'NVMe 1 TB',
+      'Radeon Vega 7',
+    ],
+
+    highlights: [
+      {
+        label: 'CPU',
+        value: '6C / 12T',
+      },
+      {
+        label: 'RAM',
+        value: '16 GB',
+      },
+      {
+        label: 'SSD',
+        value: '1 TB',
+      },
+      {
+        label: 'PSU',
+        value: '850 W',
+      },
     ],
 
     specs: [
       {
         label: 'Procesador',
         value: 'AMD Ryzen 5 5600G',
+        detail: '6 núcleos / 12 hilos · hasta 4,4 GHz',
       },
       {
         label: 'Gráficos',
-        value: 'AMD Radeon Graphics integrada',
+        value: 'AMD Radeon Vega 7',
+        detail: 'Gráficos integrados',
       },
       {
         label: 'Memoria RAM',
         value: '16 GB XPG Spectrix D41 RGB',
-        detail: '2×8 GB DDR4 3000 MHz CL16',
+        detail: '2×8 GB DDR4-3000 CL16 · Dual Channel',
       },
       {
         label: 'Almacenamiento',
         value: 'Kingston NV3 1 TB NVMe',
+        detail: 'M.2 2280',
       },
       {
         label: 'Placa madre',
         value: 'ASUS PRIME A520M-K',
+        detail: 'Socket AM4',
       },
       {
-        label: 'Fuente de poder',
-        value: 'Snake Gamer 850 W 80+ Gold Modular',
+        label: 'Fuente',
+        value: 'Snake Gamer Hydra 850 W',
+        detail: '80 Plus Gold · Modular',
       },
       {
         label: 'Gabinete',
         value: 'XYZ AIRONE 50 Mesh',
+        detail: '4 ventiladores RGB',
+      },
+      {
+        label: 'Refrigeración',
+        value: 'AMD Wraith Stealth',
+        detail: 'Cooler original AMD',
       },
     ],
 
-    upgrade:
-      'La plataforma está preparada para incorporar posteriormente una GPU dedicada de gama media sin necesidad de reemplazar la memoria RAM, el almacenamiento y la fuente de poder de 850w deja completamente preparado el upgrade de la GPU.',
+    benchmarks: [
+      {
+        game: 'Fortnite OG',
+        result: '109',
+        unit: 'FPS',
+        settings: '1080p · Performance',
+      },
+      {
+        game: 'Valorant',
+        result: '140–170',
+        unit: 'FPS',
+        settings: 'Deathmatch',
+      },
+      {
+        game: 'League of Legends',
+        result: '104',
+        unit: 'FPS',
+        settings: '1080p · Alto',
+      },
+      {
+        game: 'Rocket League',
+        result: '90',
+        unit: 'FPS',
+        settings: '1080p · Quality',
+      },
+      {
+        game: 'GTA V Legacy',
+        result: '59',
+        unit: 'FPS',
+        settings: '1080p · Online',
+      },
+      {
+        game: 'Minecraft Java',
+        result: 'OK',
+        unit: '',
+        settings: 'Vanilla · 1080p',
+      },
+    ],
 
     validation: [
-      'Verificación de componentes',
-      'Configuración de BIOS',
-      'Instalación y actualización de drivers',
-      'Pruebas de estabilidad',
-      'Control de temperaturas',
-      'Comprobación de memoria RAM',
-      'Validación del almacenamiento',
-      'Revisión final antes de entrega',
+      'MemTest86: 0 errores',
+      'CPU stress test: 0 errores',
+      'SSD S.M.A.R.T. correcto',
+      '100 % de vida reportada por SSD',
+      'RAM Dual Channel a 3000 MT/s',
+      'Temperaturas verificadas',
+      'Drivers AMD instalados',
+      'Secure Boot + TPM configurados',
+    ],
+
+    upgrade:
+      'La fuente modular de 850 W deja margen para incorporar posteriormente una tarjeta gráfica dedicada compatible.',
+
+    notes: [
+      'No incluye tarjeta gráfica dedicada.',
+      'Monitor y periféricos no incluidos.',
+      'Los FPS pueden variar según actualización, escenario y configuración.',
     ],
   },
 ]

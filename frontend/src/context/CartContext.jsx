@@ -10,7 +10,7 @@ const CartContext = createContext(null)
 export function CartProvider({ children }) {
   const [items, setItems] = useState(() => {
     try {
-      const saved = localStorage.getItem('styveen-cart')
+      const saved = localStorage.getItem('guglielmini-cart')
 
       return saved ? JSON.parse(saved) : []
     } catch {
@@ -20,7 +20,7 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem(
-      'styveen-cart',
+      'guglielmini-cart',
       JSON.stringify(items),
     )
   }, [items])

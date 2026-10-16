@@ -16,8 +16,9 @@ function Footer() {
           <BrandLogo />
 
           <p>
-            PCs ensamblados, configurados y
-            validados antes de su entrega.
+            Computadores armados,
+            configurados y probados
+            antes de su venta.
           </p>
 
         </div>
@@ -30,7 +31,7 @@ function Footer() {
           </strong>
 
           <Link to="/pcs">
-            PCs Disponibles
+            PCs disponibles
           </Link>
 
           <Link to="/proceso-armado">
@@ -43,7 +44,7 @@ function Footer() {
         <div className="footer-column">
 
           <strong>
-            STYVEEN LABS
+            GUGLIELMINI
           </strong>
 
           <Link to="/about">
@@ -66,11 +67,11 @@ function Footer() {
       <div className="container footer-bottom">
 
         <span>
-          © 2026 STYVEEN LABS
+          © 2026 GUGLIELMINI
         </span>
 
         <span>
-          ARMADO // CONFIGURADO // VALIDADO
+          ARMADO // CONFIGURADO // PROBADO
         </span>
 
       </div>

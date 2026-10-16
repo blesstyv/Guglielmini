@@ -5,65 +5,103 @@ import {
 
 function ProcesoArmado() {
   const steps = [
+
     {
-      title: 'Revisión de componentes',
+      title:
+        'Selección y revisión de componentes',
+
       description:
-        'Se compran todos los componentes nuevos, se evalúa su estado y se verifica que sean compatibles entre sí.',
+        'Se comprueba el estado declarado de cada componente, su compatibilidad y su función dentro de la configuración.',
     },
 
     {
-      title: 'Preparación del gabinete',
+      title:
+        'Preparación del gabinete',
+
       description:
-        'Se organiza el espacio de trabajo y se prepara el gabinete para instalar correctamente cada componente.',
+        'Se prepara el gabinete y el área de montaje para realizar una instalación ordenada.',
     },
 
     {
-      title: 'Instalación de componentes',
+      title:
+        'Instalación de componentes',
+
       description:
-        'Se instalan procesador, memoria RAM, almacenamiento, placa madre, fuente de poder y demás componentes del equipo. Según especificación del equipo.',
+        'Se instalan procesador, disipación, memoria RAM, almacenamiento, placa madre, fuente de poder y demás componentes incluidos.',
     },
 
     {
-      title: 'Organización del cableado',
+      title:
+        'Organización del cableado',
+
       description:
-        'Se ordenan las conexiones internas buscando mantener un montaje limpio y favorecer el flujo de aire.',
+        'Se ordenan las conexiones internas buscando mantener seguridad, acceso y un flujo de aire adecuado.',
     },
 
     {
-      title: 'Primer encendido',
+      title:
+        'Primer encendido',
+
       description:
-        'Se realiza el primer arranque para comprobar que todos los componentes sean reconocidos correctamente.',
+        'Se comprueba que el computador encienda correctamente y que los componentes principales sean reconocidos.',
     },
 
     {
-      title: 'Configuración inicial',
+      title:
+        'Configuración de BIOS',
+
       description:
-        'Se revisan los parámetros principales del sistema y se realizan los ajustes necesarios para el funcionamiento del equipo.',
+        'Se revisan parámetros de memoria, seguridad, almacenamiento y arranque según las necesidades del equipo.',
     },
 
     {
-      title: 'Instalación y actualización',
+      title:
+        'Sistema y controladores',
+
       description:
-        'Se instalan los controladores necesarios y se actualizan los elementos principales del sistema.',
+        'Se instala y configura el sistema operativo y se incorporan los controladores correspondientes.',
     },
 
     {
-      title: 'Pruebas de funcionamiento y optimización',
+      title:
+        'Optimización',
+
       description:
-        'Se comprueba el funcionamiento de memoria, almacenamiento, procesador y demás componentes instalados. Además de realizar un proceso de optimización del sistema para mejorar su rendimiento y estabilidad.',
+        'Se revisan procesos, configuración del sistema y parámetros relacionados con estabilidad y rendimiento.',
     },
 
     {
-      title: 'Control de temperaturas',
+      title:
+        'Pruebas de hardware',
+
       description:
-        'Se revisan las temperaturas del equipo durante su funcionamiento para detectar posibles problemas de refrigeración.',
+        'Se comprueba memoria, procesador, almacenamiento y demás componentes según las herramientas de prueba utilizadas para cada equipo.',
     },
 
     {
-      title: 'Validación final',
+      title:
+        'Pruebas de rendimiento',
+
       description:
-        'Se realiza una revisión general antes de considerar el computador listo para su entrega.',
+        'Cuando corresponde, se realizan pruebas reales con aplicaciones o videojuegos para registrar el comportamiento del equipo.',
     },
+
+    {
+      title:
+        'Control de temperaturas',
+
+      description:
+        'Se revisan temperaturas bajo distintas cargas para detectar posibles problemas de refrigeración.',
+    },
+
+    {
+      title:
+        'Validación final',
+
+      description:
+        'Se realiza una revisión general antes de considerar el computador disponible para venta.',
+    },
+
   ]
 
 
@@ -75,18 +113,19 @@ function ProcesoArmado() {
         <div className="info-header">
 
           <span className="eyebrow">
-            STYVEEN LABS // PROCESO DE ARMADO
+            GUGLIELMINI
           </span>
 
           <h1>
-            DEL COMPONENTE
-            <span> AL PC LISTO.</span>
+            PROCESO DE
+            <span> ARMADO.</span>
           </h1>
 
           <p>
-            Cada computador pasa por un proceso de armado,
-            configuración y revisión antes de considerarse
-            listo para su entrega.
+            Cada computador pasa por una
+            secuencia de montaje, configuración
+            y comprobaciones antes de
+            considerarse terminado.
           </p>
 
         </div>
@@ -103,16 +142,26 @@ function ProcesoArmado() {
               >
 
                 <span>
-                  {String(index + 1).padStart(2, '0')}
+                  {String(
+                    index + 1,
+                  ).padStart(
+                    2,
+                    '0',
+                  )}
                 </span>
 
-                <CheckCircle2 size={19} />
+
+                <CheckCircle2
+                  size={19}
+                />
+
 
                 <div>
 
                   <strong>
                     {step.title}
                   </strong>
+
 
                   <p>
                     {step.description}

@@ -7,12 +7,12 @@ function About() {
         <div className="info-header">
 
           <span className="eyebrow">
-            STYVEEN LABS // NOSOTROS
+            GUGLIELMINI
           </span>
 
           <h1>
-            TECNOLOGÍA CON
-            <span> IDENTIDAD PROPIA.</span>
+            SOBRE
+            <span> NOSOTROS.</span>
           </h1>
 
         </div>
@@ -21,23 +21,32 @@ function About() {
         <div className="about-text">
 
           <p>
-            STYVEEN LABS nace como un proyecto
-            enfocado en el ensamblaje, optimización
-            y comercialización de computadores.
+            GUGLIELMINI es un proyecto
+            enfocado en el armado,
+            optimización y comercialización
+            de computadores.
           </p>
 
           <p>
-            La propuesta combina conocimientos
-            de informática con una identidad
-            propia orientada al hardware y al
-            mundo gamer.
+            Cada equipo disponible se
+            construye como una unidad física
+            destinada realmente a la venta.
           </p>
 
           <p>
-            Cada PC disponible se construye como
-            una unidad real destinada a la venta,
-            evitando publicar configuraciones que
-            todavía no existen físicamente.
+            Antes de ser publicado,
+            cada computador pasa por
+            configuraciones y pruebas
+            orientadas a comprobar
+            funcionamiento, estabilidad
+            y temperaturas.
+          </p>
+
+          <p>
+            También realizamos servicios
+            relacionados con armado,
+            mantenimiento, optimización
+            y actualización de computadores.
           </p>
 
         </div>
@@ -47,5 +56,6 @@ function About() {
     </section>
   )
 }
+
 
 export default About

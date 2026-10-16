@@ -1,8 +1,14 @@
 import {
   ArrowLeft,
+  BadgeCheck,
   CheckCircle2,
+  Cpu,
+  Gauge,
+  Gamepad2,
   ShieldCheck,
   ShoppingCart,
+  Sparkles,
+  Zap,
 } from 'lucide-react'
 
 import {
@@ -11,7 +17,14 @@ import {
   useParams,
 } from 'react-router-dom'
 
-import ProductImage from '../components/ProductImage.jsx'
+import ProductGallery
+  from '../components/ProductGallery.jsx'
+
+import ProductDetailsTabs
+  from '../components/ProductDetailsTabs.jsx'
+
+import Reveal
+  from '../components/Reveal.jsx'
 
 import {
   useCart,
@@ -21,18 +34,26 @@ import {
   pcs,
 } from '../data/pcs.js'
 
-function PCDetail() {
-  const { slug } = useParams()
 
-  const navigate = useNavigate()
+function PCDetail() {
+  const {
+    slug,
+  } = useParams()
+
+  const navigate =
+    useNavigate()
 
   const {
     addToCart,
   } = useCart()
 
-  const pc = pcs.find(
-    (item) => item.slug === slug,
-  )
+
+  const pc =
+    pcs.find(
+      (item) =>
+        item.slug === slug,
+    )
+
 
   if (!pc) {
     return (
@@ -66,7 +87,14 @@ function PCDetail() {
   return (
     <>
 
-      <section className="product-detail-page">
+      {/* =====================================
+          PRODUCTO PRINCIPAL
+      ===================================== */}
+
+      <section className="product-detail-page product-detail-clean">
+
+        <div className="product-detail-glow" />
+
 
         <div className="container">
 
@@ -74,226 +102,357 @@ function PCDetail() {
             to="/pcs"
             className="back-link"
           >
+
             <ArrowLeft size={17} />
-            Volver a PCs disponibles
+
+            PCs disponibles
+
           </Link>
 
 
-          <div className="product-main">
+          <Reveal>
 
-            <div className="product-gallery">
+            <div className="product-main product-main-clean">
 
-              <ProductImage
-                pc={pc}
-                className="product-detail-image"
-              />
+              {/* GALERÍA */}
+
+              <div className="product-gallery-clean">
+
+                <div className="product-gallery-label">
+
+                  <BadgeCheck size={15} />
+
+               
+                </div>
+
+
+                <ProductGallery
+                  images={pc.images}
+                  name={pc.name}
+                />
+
+              </div>
+
+
+              {/* INFORMACIÓN */}
+
+              <div className="product-information product-information-clean">
+
+                <div className="product-heading-meta">
+
+                  <span className="product-code">
+                    {pc.code}
+                  </span>
+
+
+                  <div className="product-status">
+
+                    <span className="status-dot" />
+
+                    {pc.status}
+
+                  </div>
+
+                </div>
+
+
+                <h1>
+                  {pc.name}
+                </h1>
+
+
+                <p className="product-description-short">
+                  {pc.description}
+                </p>
+
+
+                {/* DATOS RÁPIDOS */}
+
+                <div className="product-quick-numbers">
+
+                  {pc.highlights.map(
+                    (item) => (
+
+                      <div
+                        key={item.label}
+                      >
+
+                        <span>
+                          {item.label}
+                        </span>
+
+                        <strong>
+                          {item.value}
+                        </strong>
+
+                      </div>
+
+                    ),
+                  )}
+
+                </div>
+
+
+                {/* PRECIO */}
+
+                <div className="product-price product-price-clean">
+
+                  <span>
+                    PRECIO
+                  </span>
+
+                  <strong>
+                    $
+                    {pc.price.toLocaleString(
+                      'es-CL',
+                    )}
+                  </strong>
+
+                </div>
+
+
+                {/* ACCIONES */}
+
+                <div className="product-actions">
+
+                  <button
+                    type="button"
+                    className="primary-button"
+                    onClick={buyNow}
+                  >
+
+                    <ShoppingCart
+                      size={18}
+                    />
+
+                    COMPRAR
+
+                  </button>
+
+
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    onClick={addProduct}
+                  >
+
+                    AGREGAR AL CARRITO
+
+                  </button>
+
+                </div>
+
+
+                {/* RESUMEN DE CONFIANZA */}
+
+                <div className="product-proof-line">
+
+                  <span>
+
+                    <ShieldCheck
+                      size={16}
+                    />
+
+                    Probado
+
+                  </span>
+
+
+                  <span>
+
+                    <Gauge
+                      size={16}
+                    />
+
+                    Benchmark real
+
+                  </span>
+
+
+                  <span>
+
+                    <Zap
+                      size={16}
+                    />
+
+                    Upgrade posible
+
+                  </span>
+
+                </div>
+
+              </div>
 
             </div>
 
-
-            <div className="product-information">
-
-              <span className="product-code">
-                {pc.code}
-              </span>
-
-
-              <span className="product-category">
-                {pc.category}
-              </span>
-
-
-              <h1>
-                {pc.name}
-              </h1>
-
-
-              <div className="product-status">
-
-                <span className="status-dot" />
-
-                {pc.status}
-
-              </div>
-
-
-              <p>
-                {pc.description}
-              </p>
-
-
-              <div className="product-price">
-
-                <span>
-                  Precio
-                </span>
-
-                <strong>
-                  ${pc.price.toLocaleString('es-CL')}
-                </strong>
-
-              </div>
-
-
-              <div className="product-actions">
-
-                <button
-                  type="button"
-                  className="primary-button"
-                  onClick={buyNow}
-                >
-                  <ShoppingCart size={19} />
-
-                  COMPRAR PC
-                </button>
-
-
-                <button
-                  type="button"
-                  className="secondary-button"
-                  onClick={addProduct}
-                >
-                  AGREGAR AL CARRITO
-                </button>
-
-              </div>
-
-
-              <div className="purchase-security">
-
-                <ShieldCheck size={20} />
-
-                <span>
-                  Equipo probado y validado
-                  antes de su entrega.
-                </span>
-
-              </div>
-
-            </div>
-
-          </div>
+          </Reveal>
 
         </div>
 
       </section>
 
 
-      <section className="specifications-section">
+
+      {/* =====================================
+          INFORMACIÓN INTERACTIVA
+      ===================================== */}
+
+      <section className="product-information-hub">
 
         <div className="container">
 
-          <div className="section-title">
+          <Reveal>
 
-            <span className="eyebrow">
-              CONFIGURACIÓN
-            </span>
+            <header className="product-hub-header">
 
-            <h2>
-              COMPONENTES
-            </h2>
-
-          </div>
-
-
-          <div className="specification-grid">
-
-            {pc.specs.map((spec) => (
-
-              <article
-                className="specification-item"
-                key={spec.label}
-              >
-
-                <span>
-                  {spec.label}
-                </span>
-
-                <strong>
-                  {spec.value}
-                </strong>
-
-                {spec.detail && (
-                  <small>
-                    {spec.detail}
-                  </small>
-                )}
-
-              </article>
-
-            ))}
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <section className="upgrade-section">
-
-        <div className="container">
-
-          <div className="upgrade-box">
-
-            <ShieldCheck size={29} />
-
-            <div>
-
-              <span className="eyebrow">
-                PREPARADO PARA MEJORAS
+              <span className="g-label">
+                DETALLES DEL EQUIPO
               </span>
 
               <h2>
-                AGREGA UNA GPU EN EL FUTURO
+                Especificaciones
+                <span> Rendimiento y Componentes. </span>
               </h2>
 
               <p>
-                {pc.upgrade}
+                Rendimiento real,
+                configuración de hardware
+                y pruebas realizadas.
               </p>
 
-            </div>
+            </header>
 
-          </div>
+          </Reveal>
+
+
+          <Reveal delay={100}>
+
+            <ProductDetailsTabs
+              pc={pc}
+            />
+
+          </Reveal>
 
         </div>
 
       </section>
 
 
-      <section className="validation-section">
+
+      {/* =====================================
+          UPGRADE
+      ===================================== */}
+
+      <section className="product-upgrade-clean">
 
         <div className="container">
 
-          <div className="section-title">
+          <Reveal>
 
-            <span className="eyebrow">
-              STYVEEN LABS
+            <div className="upgrade-clean-layout">
+
+              <div className="upgrade-clean-visual">
+
+                <Zap size={42} />
+
+              </div>
+
+
+              <div>
+
+                <span className="g-label">
+                  FUTURA ACTUALIZACIÓN
+                </span>
+
+                <h2>
+                  Puedes agregar una
+                  GPU dedicada.
+                </h2>
+
+                <p>
+                  {pc.upgrade}
+                </p>
+
+              </div>
+
+
+              <Link
+                to="/contact"
+                className="text-action"
+              >
+
+                CONSULTAR UPGRADE
+
+                <Sparkles
+                  size={16}
+                />
+
+              </Link>
+
+            </div>
+
+          </Reveal>
+
+        </div>
+
+      </section>
+
+
+
+      {/* =====================================
+          CIERRE COMERCIAL
+      ===================================== */}
+
+      <section className="product-final-cta">
+
+        <div className="container product-final-layout">
+
+          <div>
+
+            <span className="g-label">
+              PC-001
             </span>
 
             <h2>
-              VALIDACIÓN DEL EQUIPO
+              Disponible ahora.
             </h2>
+
+            <p>
+              Puedes revisar el equipo
+              y comprobar su funcionamiento
+              antes de comprar.
+            </p>
 
           </div>
 
 
-          <div className="validation-grid">
+          <div className="product-final-price">
 
-            {pc.validation.map((item) => (
+            <span>
+              PRECIO
+            </span>
 
-              <div
-                className="validation-item"
-                key={item}
-              >
-                <CheckCircle2 size={18} />
+            <strong>
+              $
+              {pc.price.toLocaleString(
+                'es-CL',
+              )}
+            </strong>
 
-                <span>
-                  {item}
-                </span>
-              </div>
 
-            ))}
+            <button
+              type="button"
+              className="primary-button"
+              onClick={buyNow}
+            >
+
+              <ShoppingCart
+                size={18}
+              />
+
+              COMPRAR PC
+
+            </button>
 
           </div>
 
@@ -304,5 +463,6 @@ function PCDetail() {
     </>
   )
 }
+
 
 export default PCDetail
