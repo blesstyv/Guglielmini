@@ -1,52 +1,33 @@
 # ==================================================
-# STYVEEN LABS
+# GUGLIELMINI
 # ==================================================
 
 
 # ----------------------
-# FRONTEND
+# DEPENDENCIES
 # ----------------------
 
 frontend/node_modules/
+
+
+# ----------------------
+# BUILD
+# ----------------------
+
 frontend/dist/
 frontend/.vite/
 
+
+# ----------------------
+# ENVIRONMENT
+# ----------------------
+
+.env
+.env.*
 frontend/.env
-frontend/.env.local
-frontend/.env.production
+frontend/.env.*
 
-
-# ----------------------
-# BACKEND
-# ----------------------
-
-backend/.venv/
-backend/venv/
-
-backend/__pycache__/
-backend/**/__pycache__/
-
-*.py[cod]
-*$py.class
-
-backend/.env
-
-backend/media/
-
-
-# ----------------------
-# DATABASE
-# ----------------------
-
-backend/db.sqlite3
-
-
-# ----------------------
-# PYTHON
-# ----------------------
-
-.pytest_cache/
-.mypy_cache/
+!frontend/.env.example
 
 
 # ----------------------
@@ -58,7 +39,7 @@ backend/db.sqlite3
 
 
 # ----------------------
-# WINDOWS / MAC
+# OPERATING SYSTEM
 # ----------------------
 
 Thumbs.db
@@ -71,13 +52,7 @@ desktop.ini
 # ----------------------
 
 *.log
-
-
-# ----------------------
-# ENVIRONMENT
-# ----------------------
-
-.env
-.env.*
-
-!.env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

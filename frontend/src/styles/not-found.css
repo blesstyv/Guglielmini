@@ -1,0 +1,210 @@
+/* ======================================================
+   GUGLIELMINI
+   404
+====================================================== */
+
+.g-not-found {
+  min-height:
+    calc(
+      100vh - 190px
+    );
+
+  padding:
+    80px 24px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(
+        242,
+        41,
+        139,
+        0.07
+      ),
+      transparent 35%
+    ),
+    #050507;
+}
+
+
+.g-not-found-content {
+  max-width:
+    680px;
+
+  text-align:
+    center;
+}
+
+
+.g-not-found-code {
+  display:
+    block;
+
+  margin-bottom:
+    16px;
+
+  color:
+    rgba(
+      217,
+      239,
+      41,
+      0.15
+    );
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    clamp(
+      7rem,
+      18vw,
+      14rem
+    );
+
+  font-weight:
+    800;
+
+  line-height:
+    0.72;
+
+  letter-spacing:
+    -0.08em;
+}
+
+
+.g-not-found h1 {
+  margin-top:
+    13px;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    clamp(
+      2.7rem,
+      5vw,
+      4.7rem
+    );
+
+  line-height:
+    0.96;
+
+  letter-spacing:
+    -0.055em;
+}
+
+
+.g-not-found h1 span {
+  color:
+    var(--pink);
+}
+
+
+.g-not-found p {
+  max-width:
+    520px;
+
+  margin:
+    20px auto 0;
+
+  color:
+    var(--gray);
+
+  font-size:
+    0.76rem;
+
+  line-height:
+    1.65;
+}
+
+
+.g-not-found-actions {
+  margin-top:
+    30px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    10px;
+}
+
+
+.g-not-found-back {
+  margin-top:
+    25px;
+
+  padding: 0;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    6px;
+
+  border:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.6rem;
+
+  cursor:
+    pointer;
+
+  transition:
+    color 0.2s ease;
+}
+
+
+.g-not-found-back:hover {
+  color:
+    var(--white);
+}
+
+
+@media (
+  max-width: 520px
+) {
+
+  .g-not-found-actions {
+    flex-direction:
+      column;
+  }
+
+
+  .g-not-found-actions
+  .primary-button,
+  .g-not-found-actions
+  .secondary-button {
+    width:
+      100%;
+  }
+
+}

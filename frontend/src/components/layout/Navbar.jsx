@@ -6,6 +6,7 @@ import {
 } from 'lucide-react'
 
 import {
+  useEffect,
   useState,
 } from 'react'
 
@@ -15,43 +16,117 @@ import {
   useNavigate,
 } from 'react-router-dom'
 
-import BrandLogo from '../BrandLogo.jsx'
+import BrandLogo
+  from '../BrandLogo.jsx'
 
-import {
-  useCart,
-} from '../../context/CartContext.jsx'
+import useCart
+  from '../../hooks/useCart.js'
+import '../../styles/navigation-footer.css'
+
+
+const navigationItems = [
+  {
+    to: '/pcs',
+    label: 'PCs disponibles',
+  },
+  {
+    to: '/services',
+    label: 'Servicios',
+  },
+  {
+    to: '/proceso-armado',
+    label: 'Proceso de armado',
+  },
+  {
+    to: '/about',
+    label: 'Nosotros',
+  },
+  {
+    to: '/contact',
+    label: 'Contacto',
+  },
+]
 
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [
+    menuOpen,
+    setMenuOpen,
+  ] = useState(false)
 
-  const [search, setSearch] = useState('')
+  const [
+    search,
+    setSearch,
+  ] = useState('')
 
-  const navigate = useNavigate()
+
+  const navigate =
+    useNavigate()
+
 
   const {
     cartCount,
   } = useCart()
 
 
+  useEffect(() => {
+    if (!menuOpen) {
+      document.body.style.overflow =
+        ''
+
+      return undefined
+    }
+
+
+    document.body.style.overflow =
+      'hidden'
+
+
+    return () => {
+      document.body.style.overflow =
+        ''
+    }
+  }, [menuOpen])
+
+
   function submitSearch(event) {
     event.preventDefault()
 
-    const value = search.trim()
+
+    const value =
+      search.trim()
+
 
     if (!value) {
       navigate('/pcs')
+      setMenuOpen(false)
+
       return
     }
 
+
     navigate(
-      `/pcs?q=${encodeURIComponent(value)}`,
+      `/pcs?q=${encodeURIComponent(
+        value,
+      )}`,
     )
+
+
+    setSearch('')
+    setMenuOpen(false)
   }
 
 
   function closeMenu() {
     setMenuOpen(false)
+  }
+
+
+  function toggleMenu() {
+    setMenuOpen(
+      (current) =>
+        !current,
+    )
   }
 
 
@@ -64,30 +139,43 @@ function Navbar() {
           to="/"
           className="navbar-logo"
           onClick={closeMenu}
+          aria-label="Ir al inicio de GUGLIELMINI"
         >
+
           <BrandLogo />
+
         </Link>
 
 
         <form
           className="navbar-search"
           onSubmit={submitSearch}
+          role="search"
         >
 
           <input
             type="search"
             placeholder="Busca tu próximo PC..."
             value={search}
-            onChange={(event) =>
-              setSearch(event.target.value)
+            onChange={
+              (event) =>
+                setSearch(
+                  event.target.value,
+                )
             }
+            aria-label="Buscar computadores"
           />
+
 
           <button
             type="submit"
             aria-label="Buscar"
           >
-            <Search size={19} />
+
+            <Search
+              size={18}
+            />
+
           </button>
 
         </form>
@@ -96,79 +184,93 @@ function Navbar() {
         <Link
           to="/cart"
           className="navbar-cart"
+          onClick={closeMenu}
+          aria-label={
+            cartCount > 0
+              ? `Ver carrito con ${cartCount} producto`
+              : 'Ver carrito'
+          }
         >
-          <ShoppingCart size={23} />
+
+          <ShoppingCart
+            size={22}
+          />
+
 
           {cartCount > 0 && (
+
             <span>
               {cartCount}
             </span>
+
           )}
+
         </Link>
 
 
         <button
           type="button"
           className="mobile-menu-button"
-          onClick={() =>
-            setMenuOpen(!menuOpen)
+          onClick={toggleMenu}
+          aria-label={
+            menuOpen
+              ? 'Cerrar menú'
+              : 'Abrir menú'
           }
-          aria-label="Abrir menú"
+          aria-expanded={menuOpen}
         >
+
           {menuOpen ? (
-            <X size={24} />
+
+            <X
+              size={24}
+            />
+
           ) : (
-            <Menu size={24} />
+
+            <Menu
+              size={24}
+            />
+
           )}
+
         </button>
 
       </div>
 
 
       <nav
-        className={`main-navigation ${
+        className={
           menuOpen
-            ? 'main-navigation--open'
-            : ''
-        }`}
+            ? 'main-navigation main-navigation--open'
+            : 'main-navigation'
+        }
+        aria-label="Navegación principal"
       >
 
         <div className="container navigation-content">
 
-          <NavLink
-            to="/pcs"
-            onClick={closeMenu}
-          >
-            PCs Disponibles
-          </NavLink>
+          {navigationItems.map(
+            (item) => (
 
-          <NavLink
-            to="/services"
-            onClick={closeMenu}
-          >
-            Servicios
-          </NavLink>
+              <NavLink
+                key={item.to}
+                to={item.to}
+                onClick={closeMenu}
+                className={
+                  ({ isActive }) =>
+                    isActive
+                      ? 'active'
+                      : ''
+                }
+              >
 
-          <NavLink
-            to="/proceso-armado"
-            onClick={closeMenu}
-          >
-            Proceso de armado
-          </NavLink>
+                {item.label}
 
-          <NavLink
-            to="/about"
-            onClick={closeMenu}
-          >
-            Nosotros
-          </NavLink>
+              </NavLink>
 
-          <NavLink
-            to="/contact"
-            onClick={closeMenu}
-          >
-            Contacto
-          </NavLink>
+            ),
+          )}
 
         </div>
 

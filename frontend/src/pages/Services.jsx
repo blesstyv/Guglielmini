@@ -1,259 +1,494 @@
 import {
-  ArrowUpRight,
-  CheckCircle2,
+  ArrowRight,
+  Check,
   Cpu,
   Gauge,
-  HardDrive,
-  MemoryStick,
+  MessageCircle,
   ShieldCheck,
-  Sparkles,
   Wrench,
 } from 'lucide-react'
 
 import {
-  Link,
-} from 'react-router-dom'
+  useState,
+} from 'react'
 
 import Reveal
   from '../components/Reveal.jsx'
 
+import {
+  openWhatsApp,
+  serviceMessage,
+} from '../utils/whatsapp.js'
+
+import '../styles/services-commerce.css'
+
 
 const services = [
   {
-    icon:
-      <Cpu />,
+    id: 'armado',
 
-    title:
-      'Armado de PC',
+    icon: Cpu,
 
-    price:
-      'Desde $29.990',
+    eyebrow: 'ENSAMBLAJE',
 
-    text:
-      'Ensamblaje completo utilizando los componentes del cliente.',
+    title: 'Armado de PC',
 
-    features: [
-      'Montaje de componentes',
-      'Ordenamiento de cableado',
-      'Configuración inicial',
-      'Comprobación de encendido',
+    price: 'Desde $39.990',
+
+    description:
+      'Montaje completo de computadores, organización del cableado y revisión física de los componentes.',
+
+    details: [
+      'Montaje completo del hardware',
+      'Cable management',
+      'Configuración inicial de BIOS/UEFI',
+      'Instalación y revisión de drivers',
+      'Comprobación general del equipo',
     ],
   },
 
   {
-    icon:
-      <Gauge />,
+    id: 'optimizacion',
 
-    title:
-      'Optimización Gamer',
+    icon: Gauge,
 
-    price:
-      'Desde $19.990',
+    eyebrow: 'RENDIMIENTO',
 
-    text:
-      'Revisión orientada a estabilidad, configuración y rendimiento.',
+    title: 'Optimización Gamer',
 
-    features: [
-      'Configuración de Windows',
-      'Drivers',
-      'Revisión de inicio',
-      'Pruebas de rendimiento',
+    price: 'Desde $29.990',
+
+    description:
+      'Configuración orientada a mejorar estabilidad, rendimiento y comportamiento general del computador.',
+
+    details: [
+      'Revisión de configuración de Windows',
+      'Configuración de drivers',
+      'Ajustes básicos de rendimiento',
+      'Revisión de temperaturas',
+      'Comprobación mediante pruebas reales',
     ],
   },
 
   {
-    icon:
-      <Sparkles />,
+    id: 'mantenimiento',
 
-    title:
-      'Mantenimiento',
+    icon: ShieldCheck,
 
-    price:
-      'Desde $19.990',
+    eyebrow: 'MANTENIMIENTO',
 
-    text:
-      'Limpieza y revisión preventiva del computador.',
+    title: 'Mantenimiento de PC',
 
-    features: [
-      'Limpieza interna',
-      'Revisión visual',
-      'Temperaturas',
-      'Funcionamiento general',
+    price: 'Desde $24.990',
+
+    description:
+      'Revisión preventiva del computador para mantener temperaturas, limpieza y funcionamiento adecuados.',
+
+    details: [
+      'Inspección general del equipo',
+      'Limpieza física básica',
+      'Revisión de temperaturas',
+      'Comprobación de almacenamiento',
+      'Evaluación del estado general',
     ],
   },
 
   {
-    icon:
-      <Wrench />,
+    id: 'upgrade',
 
-    title:
-      'Upgrade de hardware',
+    icon: Wrench,
 
-    price:
-      'Según componente',
+    eyebrow: 'ACTUALIZACIÓN',
 
-    text:
-      'Evaluación e instalación de mejoras compatibles con tu computador.',
+    title: 'Upgrade de Hardware',
 
-    features: [
-      'RAM',
-      'SSD',
-      'GPU',
-      'Fuente de poder',
+    price: 'Según componente',
+
+    description:
+      'Evaluación de mejoras compatibles según el equipo, presupuesto y objetivo de rendimiento.',
+
+    details: [
+      'Revisión de compatibilidad',
+      'Recomendación de componentes',
+      'Instalación del nuevo hardware',
+      'Configuración posterior',
+      'Pruebas de funcionamiento',
     ],
   },
 ]
 
 
 function Services() {
+  const [
+    activeService,
+    setActiveService,
+  ] = useState('armado')
+
+
+  const selected =
+    services.find(
+      (service) =>
+        service.id === activeService,
+    )
+
+
+  function askAboutService() {
+    openWhatsApp(
+      serviceMessage(
+        selected.title,
+      ),
+    )
+  }
+
+
   return (
-    <section className="info-page services-page">
+    <>
 
-      <div className="container">
+      {/* =====================================
+          HERO
+      ===================================== */}
 
-        <Reveal>
+      <section className="g-services-page">
 
-          <div className="info-header">
+        <div className="container">
 
-            <span className="eyebrow">
-              GUGLIELMINI
-            </span>
+          <Reveal>
 
-            <h1>
-              SERVICIOS
-              <span> TÉCNICOS.</span>
-            </h1>
+            <header className="g-services-header">
 
-            <p>
-              Servicios orientados a
-              computadores gamer,
-              mantenimiento, mejoras
-              y optimización.
-            </p>
-
-          </div>
-
-        </Reveal>
+              <span className="g-label">
+                SERVICIOS
+              </span>
 
 
-        <div className="service-grid service-grid--commercial">
-
-          {services.map(
-            (
-              service,
-              index,
-            ) => (
-
-              <Reveal
-                key={service.title}
-                delay={
-                  index * 80
-                }
-              >
-
-                <article className="service-card service-card--premium">
-
-                  <div className="service-icon">
-
-                    {service.icon}
-
-                  </div>
+              <h1>
+                Tu PC,
+                <span> bien preparado.</span>
+              </h1>
 
 
-                  <span className="service-price">
+              <p>
+                Armado, mantenimiento,
+                optimización y mejoras de hardware
+                con un proceso técnico claro y
+                atención directa.
+              </p>
 
-                    {service.price}
+            </header>
 
+          </Reveal>
+
+
+
+          {/* =====================================
+              SERVICE SELECTOR
+          ===================================== */}
+
+          <div className="g-services-layout">
+
+            <div className="g-services-list">
+
+              {services.map(
+                (
+                  service,
+                  index,
+                ) => {
+
+                  const Icon =
+                    service.icon
+
+                  const isActive =
+                    activeService ===
+                    service.id
+
+
+                  return (
+                    <Reveal
+                      key={service.id}
+                      delay={
+                        index * 50
+                      }
+                    >
+
+                      <button
+                        type="button"
+                        className={
+                          isActive
+                            ? 'g-service-row g-service-row--active'
+                            : 'g-service-row'
+                        }
+                        onClick={() =>
+                          setActiveService(
+                            service.id,
+                          )
+                        }
+                      >
+
+                        <div className="g-service-row-icon">
+
+                          <Icon
+                            size={22}
+                          />
+
+                        </div>
+
+
+                        <div className="g-service-row-content">
+
+                          <span>
+                            {service.eyebrow}
+                          </span>
+
+                          <strong>
+                            {service.title}
+                          </strong>
+
+                        </div>
+
+
+                        <div className="g-service-row-price">
+
+                          {service.price}
+
+                        </div>
+
+
+                        <ArrowRight
+                          className="g-service-row-arrow"
+                          size={19}
+                        />
+
+                      </button>
+
+                    </Reveal>
+                  )
+                },
+              )}
+
+            </div>
+
+
+
+            {/* =====================================
+                ACTIVE SERVICE
+            ===================================== */}
+
+            <Reveal delay={100}>
+
+              <aside className="g-service-detail">
+
+                <div className="g-service-detail-top">
+
+                  <span className="g-label">
+                    {selected.eyebrow}
                   </span>
 
 
-                  <h2>
-                    {service.title}
-                  </h2>
+                  <strong>
+                    {selected.price}
+                  </strong>
+
+                </div>
 
 
-                  <p>
-                    {service.text}
-                  </p>
+                <h2>
+                  {selected.title}
+                </h2>
 
 
-                  <div className="service-features">
+                <p className="g-service-description">
 
-                    {service.features.map(
-                      (feature) => (
+                  {selected.description}
 
-                        <div
-                          key={feature}
+                </p>
+
+
+                <div className="g-service-includes">
+
+                  <span>
+                    EL SERVICIO PUEDE INCLUIR
+                  </span>
+
+
+                  <ul>
+
+                    {selected.details.map(
+                      (detail) => (
+
+                        <li
+                          key={detail}
                         >
 
-                          <CheckCircle2
+                          <Check
                             size={15}
                           />
 
-                          <span>
-                            {feature}
-                          </span>
+                          {detail}
 
-                        </div>
+                        </li>
 
                       ),
                     )}
 
-                  </div>
+                  </ul>
+
+                </div>
 
 
-                  <Link
-                    to={`/contact?service=${encodeURIComponent(
-                      service.title,
-                    )}`}
-                    className="service-link"
-                  >
+                <button
+                  type="button"
+                  className="primary-button g-service-contact"
+                  onClick={askAboutService}
+                >
 
-                    CONSULTAR
+                  <MessageCircle
+                    size={18}
+                  />
 
-                    <ArrowUpRight
-                      size={16}
-                    />
+                  CONSULTAR POR WHATSAPP
 
-                  </Link>
-
-                </article>
-
-              </Reveal>
-
-            ),
-          )}
-
-        </div>
+                </button>
 
 
-        <Reveal>
+                <small>
+                  El valor final puede variar
+                  según el equipo, componentes
+                  y trabajo requerido.
+                </small>
 
-          <div className="services-security">
+              </aside>
 
-            <ShieldCheck
-              size={27}
-            />
-
-            <div>
-
-      
-              <p>
-                Cada servicio se realiza
-                según las necesidades y
-                componentes específicos
-                de cada computador.
-              </p>
-
-            </div>
+            </Reveal>
 
           </div>
 
-        </Reveal>
+        </div>
 
-      </div>
+      </section>
 
-    </section>
+
+
+      {/* =====================================
+          PROCESS
+      ===================================== */}
+
+      <section className="g-service-process">
+
+        <div className="container">
+
+          <Reveal>
+
+            <div className="g-service-process-header">
+
+              <span className="g-label">
+                CÓMO TRABAJAMOS
+              </span>
+
+              <h2>
+                Un proceso simple.
+              </h2>
+
+            </div>
+
+          </Reveal>
+
+
+          <div className="g-service-process-line">
+
+            <Reveal delay={50}>
+
+              <div>
+
+                <span>
+                  01
+                </span>
+
+                <strong>
+                  Conversamos
+                </strong>
+
+                <p>
+                  Revisamos qué necesitas
+                  y el estado de tu equipo.
+                </p>
+
+              </div>
+
+            </Reveal>
+
+
+            <Reveal delay={100}>
+
+              <div>
+
+                <span>
+                  02
+                </span>
+
+                <strong>
+                  Evaluamos
+                </strong>
+
+                <p>
+                  Definimos el trabajo,
+                  compatibilidad y alcance.
+                </p>
+
+              </div>
+
+            </Reveal>
+
+
+            <Reveal delay={150}>
+
+              <div>
+
+                <span>
+                  03
+                </span>
+
+                <strong>
+                  Trabajamos
+                </strong>
+
+                <p>
+                  Realizamos el servicio
+                  acordado sobre el equipo.
+                </p>
+
+              </div>
+
+            </Reveal>
+
+
+            <Reveal delay={200}>
+
+              <div>
+
+                <span>
+                  04
+                </span>
+
+                <strong>
+                  Verificamos
+                </strong>
+
+                <p>
+                  Revisamos funcionamiento
+                  antes de finalizar.
+                </p>
+
+              </div>
+
+            </Reveal>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </>
   )
 }
 

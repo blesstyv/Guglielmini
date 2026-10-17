@@ -1,10 +1,8 @@
 import {
   ArrowLeft,
-  BadgeCheck,
-  CheckCircle2,
-  Cpu,
+  ArrowRight,
   Gauge,
-  Gamepad2,
+  MessageCircle,
   ShieldCheck,
   ShoppingCart,
   Sparkles,
@@ -26,13 +24,21 @@ import ProductDetailsTabs
 import Reveal
   from '../components/Reveal.jsx'
 
-import {
-  useCart,
-} from '../context/CartContext.jsx'
+import useCart
+  from '../hooks/useCart.js'
 
 import {
   pcs,
 } from '../data/pcs.js'
+
+import {
+  openWhatsApp,
+  productPurchaseMessage,
+  productQuestionMessage,
+  serviceMessage,
+} from '../utils/whatsapp.js'
+
+import '../styles/product-detail-commerce.css'
 
 
 function PCDetail() {
@@ -44,6 +50,7 @@ function PCDetail() {
     useNavigate()
 
   const {
+    items,
     addToCart,
   } = useCart()
 
@@ -72,15 +79,43 @@ function PCDetail() {
   }
 
 
-  function addProduct() {
+  const isInCart =
+    items.some(
+      (item) =>
+        item.id === pc.id,
+    )
+
+
+  function buyNow() {
+    openWhatsApp(
+      productPurchaseMessage(pc),
+    )
+  }
+
+
+  function askAboutPc() {
+    openWhatsApp(
+      productQuestionMessage(pc),
+    )
+  }
+
+
+  function handleCart() {
+    if (isInCart) {
+      navigate('/cart')
+      return
+    }
+
     addToCart(pc)
   }
 
 
-  function buyNow() {
-    addToCart(pc)
-
-    navigate('/cart')
+  function askAboutUpgrade() {
+    openWhatsApp(
+      serviceMessage(
+        `Upgrade de hardware para ${pc.code} - ${pc.name}`,
+      ),
+    )
   }
 
 
@@ -114,17 +149,11 @@ function PCDetail() {
 
             <div className="product-main product-main-clean">
 
-              {/* GALERÍA */}
+              {/* =====================================
+                  GALERÍA
+              ===================================== */}
 
               <div className="product-gallery-clean">
-
-                <div className="product-gallery-label">
-
-                  <BadgeCheck size={15} />
-
-               
-                </div>
-
 
                 <ProductGallery
                   images={pc.images}
@@ -134,7 +163,9 @@ function PCDetail() {
               </div>
 
 
-              {/* INFORMACIÓN */}
+              {/* =====================================
+                  INFORMACIÓN PRINCIPAL
+              ===================================== */}
 
               <div className="product-information product-information-clean">
 
@@ -166,7 +197,9 @@ function PCDetail() {
                 </p>
 
 
-                {/* DATOS RÁPIDOS */}
+                {/* =====================================
+                    DATOS RÁPIDOS
+                ===================================== */}
 
                 <div className="product-quick-numbers">
 
@@ -193,7 +226,9 @@ function PCDetail() {
                 </div>
 
 
-                {/* PRECIO */}
+                {/* =====================================
+                    PRECIO
+                ===================================== */}
 
                 <div className="product-price product-price-clean">
 
@@ -202,48 +237,89 @@ function PCDetail() {
                   </span>
 
                   <strong>
+
                     $
                     {pc.price.toLocaleString(
                       'es-CL',
                     )}
+
                   </strong>
 
                 </div>
 
 
-                {/* ACCIONES */}
+                {/* =====================================
+                    COMPRA / CARRITO
+                ===================================== */}
 
-                <div className="product-actions">
+                <div className="product-commerce-primary">
 
                   <button
                     type="button"
-                    className="primary-button"
+                    className="primary-button product-buy-button"
                     onClick={buyNow}
+                  >
+
+                    <MessageCircle
+                      size={18}
+                    />
+
+                    COMPRAR AHORA
+
+                  </button>
+
+
+                  <button
+                    type="button"
+                    className={
+                      isInCart
+                        ? 'secondary-button product-cart-button product-cart-button--active'
+                        : 'secondary-button product-cart-button'
+                    }
+                    onClick={handleCart}
                   >
 
                     <ShoppingCart
                       size={18}
                     />
 
-                    COMPRAR
+                    {isInCart
+                      ? 'VER CARRITO'
+                      : 'AGREGAR AL CARRITO'}
 
-                  </button>
-
-
-                  <button
-                    type="button"
-                    className="secondary-button"
-                    onClick={addProduct}
-                  >
-
-                    AGREGAR AL CARRITO
+                    {isInCart && (
+                      <ArrowRight
+                        size={16}
+                      />
+                    )}
 
                   </button>
 
                 </div>
 
 
-                {/* RESUMEN DE CONFIANZA */}
+                {/* =====================================
+                    CONSULTA
+                ===================================== */}
+
+                <button
+                  type="button"
+                  className="secondary-button product-consult-button"
+                  onClick={askAboutPc}
+                >
+
+                  <MessageCircle
+                    size={18}
+                  />
+
+                  CONSULTAR SOBRE ESTE PC
+
+                </button>
+
+
+                {/* =====================================
+                    CONFIANZA
+                ===================================== */}
 
                 <div className="product-proof-line">
 
@@ -253,7 +329,7 @@ function PCDetail() {
                       size={16}
                     />
 
-                    Probado
+                    Equipo probado
 
                   </span>
 
@@ -264,7 +340,7 @@ function PCDetail() {
                       size={16}
                     />
 
-                    Benchmark real
+                    Benchmarks reales
 
                   </span>
 
@@ -310,14 +386,17 @@ function PCDetail() {
               </span>
 
               <h2>
-                Especificaciones
-                <span> Rendimiento y Componentes. </span>
+
+                Revisa lo que
+                <span> realmente importa.</span>
+
               </h2>
 
               <p>
-                Rendimiento real,
-                configuración de hardware
-                y pruebas realizadas.
+                Rendimiento observado,
+                componentes instalados
+                y pruebas realizadas
+                antes de publicar el equipo.
               </p>
 
             </header>
@@ -365,8 +444,7 @@ function PCDetail() {
                 </span>
 
                 <h2>
-                  Puedes agregar una
-                  GPU dedicada.
+                  Preparado para seguir creciendo.
                 </h2>
 
                 <p>
@@ -376,9 +454,10 @@ function PCDetail() {
               </div>
 
 
-              <Link
-                to="/contact"
-                className="text-action"
+              <button
+                type="button"
+                className="text-action text-action-button"
+                onClick={askAboutUpgrade}
               >
 
                 CONSULTAR UPGRADE
@@ -387,7 +466,7 @@ function PCDetail() {
                   size={16}
                 />
 
-              </Link>
+              </button>
 
             </div>
 
@@ -410,7 +489,7 @@ function PCDetail() {
           <div>
 
             <span className="g-label">
-              PC-001
+              {pc.code}
             </span>
 
             <h2>
@@ -418,9 +497,10 @@ function PCDetail() {
             </h2>
 
             <p>
-              Puedes revisar el equipo
-              y comprobar su funcionamiento
-              antes de comprar.
+              Consulta disponibilidad,
+              opciones de pago y coordinación
+              de entrega directamente
+              por WhatsApp.
             </p>
 
           </div>
@@ -433,10 +513,12 @@ function PCDetail() {
             </span>
 
             <strong>
+
               $
               {pc.price.toLocaleString(
                 'es-CL',
               )}
+
             </strong>
 
 
@@ -446,11 +528,11 @@ function PCDetail() {
               onClick={buyNow}
             >
 
-              <ShoppingCart
+              <MessageCircle
                 size={18}
               />
 
-              COMPRAR PC
+              COMPRAR POR WHATSAPP
 
             </button>
 

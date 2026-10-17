@@ -1,0 +1,516 @@
+/* ======================================================
+   GUGLIELMINI
+   CONTACT — COMMERCIAL EXPERIENCE
+====================================================== */
+
+
+/* ======================================================
+   PAGE
+====================================================== */
+
+.g-contact-page {
+  min-height:
+    75vh;
+
+  padding:
+    95px 0 125px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(
+        242,
+        41,
+        139,
+        0.055
+      ),
+      transparent 34%
+    ),
+    #050507;
+}
+
+
+/* ======================================================
+   HEADER
+====================================================== */
+
+.g-contact-header {
+  max-width:
+    690px;
+
+  margin:
+    0 auto;
+
+  text-align:
+    center;
+}
+
+
+.g-contact-header h1 {
+  margin-top:
+    12px;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    clamp(
+      3.8rem,
+      7vw,
+      6.5rem
+    );
+
+  line-height:
+    0.92;
+
+  letter-spacing:
+    -0.065em;
+}
+
+
+.g-contact-header p {
+  max-width:
+    570px;
+
+  margin:
+    23px auto 0;
+
+  color:
+    var(--gray);
+
+  font-size:
+    0.86rem;
+
+  line-height:
+    1.7;
+}
+
+
+/* ======================================================
+   OPTIONS
+====================================================== */
+
+.g-contact-options {
+  max-width:
+    900px;
+
+  margin:
+    65px auto 0;
+
+  border-top:
+    1px solid
+    var(--border);
+}
+
+
+.g-contact-option {
+  width:
+    100%;
+
+  min-height:
+    125px;
+
+  padding:
+    23px 5px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    58px
+    minmax(0, 1fr)
+    auto;
+
+  align-items:
+    center;
+
+  gap:
+    22px;
+
+  border:
+    0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  background:
+    transparent;
+
+  color:
+    var(--white);
+
+  text-align:
+    left;
+
+  cursor:
+    pointer;
+
+  transition:
+    padding-left 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.g-contact-option:hover {
+  padding-left:
+    15px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.018
+    );
+}
+
+
+/* ======================================================
+   ICON
+====================================================== */
+
+.g-contact-option-icon {
+  width:
+    52px;
+
+  height:
+    52px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  border:
+    1px solid
+    rgba(
+      242,
+      41,
+      139,
+      0.14
+    );
+
+  border-radius:
+    12px;
+
+  background:
+    rgba(
+      242,
+      41,
+      139,
+      0.045
+    );
+
+  color:
+    var(--pink);
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.g-contact-option:hover
+.g-contact-option-icon {
+  transform:
+    scale(1.04);
+
+  border-color:
+    rgba(
+      217,
+      239,
+      41,
+      0.25
+    );
+
+  background:
+    rgba(
+      217,
+      239,
+      41,
+      0.055
+    );
+
+  color:
+    var(--acid);
+}
+
+
+/* ======================================================
+   CONTENT
+====================================================== */
+
+.g-contact-option-content {
+  min-width: 0;
+}
+
+
+.g-contact-option-content > span {
+  color:
+    var(--acid);
+
+  font-family:
+    var(--mono-font);
+
+  font-size:
+    0.50rem;
+
+  letter-spacing:
+    0.10em;
+}
+
+
+.g-contact-option-content h2 {
+  margin-top:
+    6px;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    1.35rem;
+
+  line-height:
+    1.1;
+}
+
+
+.g-contact-option-content p {
+  max-width:
+    570px;
+
+  margin-top:
+    7px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.67rem;
+
+  line-height:
+    1.55;
+}
+
+
+/* ======================================================
+   ARROW
+====================================================== */
+
+.g-contact-arrow {
+  margin-right:
+    8px;
+
+  color:
+    var(--muted);
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.g-contact-option:hover
+.g-contact-arrow {
+  transform:
+    translateX(5px);
+
+  color:
+    var(--acid);
+}
+
+
+/* ======================================================
+   WHATSAPP NOTE
+====================================================== */
+
+.g-contact-whatsapp {
+  max-width:
+    720px;
+
+  margin:
+    45px auto 0;
+
+  padding:
+    24px 28px;
+
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  gap:
+    17px;
+
+  border:
+    1px solid
+    rgba(
+      217,
+      239,
+      41,
+      0.12
+    );
+
+  border-radius:
+    12px;
+
+  background:
+    rgba(
+      217,
+      239,
+      41,
+      0.025
+    );
+}
+
+
+.g-contact-whatsapp-icon {
+  width:
+    43px;
+
+  height:
+    43px;
+
+  flex-shrink:
+    0;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  border-radius:
+    10px;
+
+  background:
+    rgba(
+      217,
+      239,
+      41,
+      0.07
+    );
+
+  color:
+    var(--acid);
+}
+
+
+.g-contact-whatsapp strong {
+  color:
+    var(--white);
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    0.82rem;
+}
+
+
+.g-contact-whatsapp p {
+  margin-top:
+    5px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.62rem;
+
+  line-height:
+    1.55;
+}
+
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (
+  max-width: 650px
+) {
+
+  .g-contact-page {
+    padding:
+      70px 0 90px;
+  }
+
+
+  .g-contact-header h1 {
+    font-size:
+      4rem;
+  }
+
+
+  .g-contact-options {
+    margin-top:
+      45px;
+  }
+
+
+  .g-contact-option {
+    min-height:
+      115px;
+
+    grid-template-columns:
+      48px
+      minmax(0, 1fr)
+      auto;
+
+    gap:
+      15px;
+  }
+
+
+  .g-contact-option-icon {
+    width:
+      44px;
+
+    height:
+      44px;
+  }
+
+
+  .g-contact-option-content h2 {
+    font-size:
+      1.1rem;
+  }
+
+
+  .g-contact-option-content p {
+    font-size:
+      0.62rem;
+  }
+
+
+  .g-contact-whatsapp {
+    padding:
+      20px;
+  }
+
+}
+
+
+@media (
+  max-width: 430px
+) {
+
+  .g-contact-option {
+    grid-template-columns:
+      44px
+      minmax(0, 1fr);
+  }
+
+
+  .g-contact-arrow {
+    display:
+      none;
+  }
+
+}

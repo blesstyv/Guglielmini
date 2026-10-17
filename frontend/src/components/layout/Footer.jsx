@@ -1,78 +1,224 @@
 import {
+  ArrowUpRight,
+  MessageCircle,
+} from 'lucide-react'
+
+import {
   Link,
 } from 'react-router-dom'
 
-import BrandLogo from '../BrandLogo.jsx'
+import BrandLogo
+  from '../BrandLogo.jsx'
+
+import {
+  generalContactMessage,
+  openWhatsApp,
+} from '../../utils/whatsapp.js'
 
 
 function Footer() {
+  function contactUs() {
+    openWhatsApp(
+      generalContactMessage(),
+    )
+  }
+
+
   return (
-    <footer className="footer">
+    <footer className="g-footer">
 
-      <div className="container footer-grid">
+      <div className="container">
 
-        <div className="footer-brand">
+        <div className="g-footer-top">
 
-          <BrandLogo />
+          <div className="g-footer-brand">
 
-          <p>
-            Computadores armados,
-            configurados y probados
-            antes de su venta.
-          </p>
+            <BrandLogo />
+
+
+            <p>
+              Computadores armados,
+              configurados y probados
+              antes de su publicación.
+            </p>
+
+
+            <button
+              type="button"
+              className="g-footer-whatsapp"
+              onClick={contactUs}
+            >
+
+              <MessageCircle
+                size={17}
+              />
+
+              HABLAR POR WHATSAPP
+
+            </button>
+
+          </div>
+
+
+          <div className="g-footer-column">
+
+            <strong>
+              EQUIPOS
+            </strong>
+
+
+            <Link to="/pcs">
+
+              PCs disponibles
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </Link>
+
+
+            <Link to="/proceso-armado">
+
+              Proceso de armado
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </Link>
+
+
+            <Link to="/cart">
+
+              Carrito
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </Link>
+
+          </div>
+
+
+          <div className="g-footer-column">
+
+            <strong>
+              SERVICIOS
+            </strong>
+
+
+            <Link to="/services">
+
+              Armado de PC
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </Link>
+
+
+            <Link to="/services">
+
+              Optimización
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </Link>
+
+
+            <Link to="/services">
+
+              Mantenimiento
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </Link>
+
+
+            <Link to="/services">
+
+              Upgrade
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </Link>
+
+          </div>
+
+
+          <div className="g-footer-column">
+
+            <strong>
+              GUGLIELMINI
+            </strong>
+
+
+            <Link to="/about">
+
+              Nosotros
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </Link>
+
+
+            <Link to="/contact">
+
+              Contacto
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </Link>
+
+
+            <button
+              type="button"
+              onClick={contactUs}
+            >
+
+              WhatsApp
+
+              <ArrowUpRight
+                size={13}
+              />
+
+            </button>
+
+          </div>
 
         </div>
 
 
-        <div className="footer-column">
+        <div className="g-footer-bottom">
 
-          <strong>
-            PCs
-          </strong>
-
-          <Link to="/pcs">
-            PCs disponibles
-          </Link>
-
-          <Link to="/proceso-armado">
-            Proceso de armado
-          </Link>
-
-        </div>
+          <span>
+            © 2026 GUGLIELMINI
+          </span>
 
 
-        <div className="footer-column">
+          <span>
+            Valparaíso · Chile
+          </span>
 
-          <strong>
-            GUGLIELMINI
-          </strong>
 
-          <Link to="/about">
-            Nosotros
-          </Link>
-
-          <Link to="/services">
-            Servicios
-          </Link>
-
-          <Link to="/contact">
-            Contacto
-          </Link>
+          <span>
+            ARMADO // CONFIGURADO // PROBADO
+          </span>
 
         </div>
-
-      </div>
-
-
-      <div className="container footer-bottom">
-
-        <span>
-          © 2026 GUGLIELMINI
-        </span>
-
-        <span>
-          ARMADO // CONFIGURADO // PROBADO
-        </span>
 
       </div>
 

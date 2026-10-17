@@ -1,243 +1,354 @@
 import {
-  CheckCircle2,
+  ArrowRight,
+  CircleHelp,
+  Gamepad2,
+  Headphones,
+  ShoppingCart,
+  Wrench,
 } from 'lucide-react'
 
-import {
-  useState,
-} from 'react'
+import Reveal
+  from '../components/Reveal.jsx'
 
 import {
-  useSearchParams,
-} from 'react-router-dom'
+  generalContactMessage,
+  openWhatsApp,
+  serviceMessage,
+  supportMessage,
+} from '../utils/whatsapp.js'
 
-import {
-  useCart,
-} from '../context/CartContext.jsx'
+import '../styles/contact-commerce.css'
+
 
 function Contact() {
-  const [searchParams] = useSearchParams()
-
-  const checkout =
-    searchParams.get('checkout') === '1'
-
-  const {
-    items,
-    total,
-    clearCart,
-  } = useCart()
-
-  const [sent, setSent] =
-    useState(false)
-
-  const [form, setForm] =
-    useState({
-      name: '',
-      email: '',
-      phone: '',
-      city: '',
-      message: '',
-    })
-
-
-  function updateField(event) {
-    const {
-      name,
-      value,
-    } = event.target
-
-    setForm((current) => ({
-      ...current,
-      [name]: value,
-    }))
-  }
-
-
-  function submitForm(event) {
-    event.preventDefault()
-
-    const request = {
-      ...form,
-
-      products:
-        items.map((item) => ({
-          id: item.id,
-          name: item.name,
-          price: item.price,
-        })),
-
-      total,
-
-      createdAt:
-        new Date().toISOString(),
-    }
-
-    localStorage.setItem(
-      'styveen-last-request',
-      JSON.stringify(request),
+  function contactGeneral() {
+    openWhatsApp(
+      generalContactMessage(),
     )
-
-    if (checkout) {
-      clearCart()
-    }
-
-    setSent(true)
   }
 
 
-  if (sent) {
-    return (
-      <section className="request-success">
+  function contactPurchase() {
+    openWhatsApp(
+      [
+        'Hola, vengo desde la web de GUGLIELMINI.',
+        '',
+        'Quiero consultar por la compra de un computador.',
+        '',
+        'Mi consulta es:',
+      ].join('\n'),
+    )
+  }
 
-        <CheckCircle2 size={55} />
 
-        <h1>
-          Solicitud registrada
-        </h1>
+  function contactServices() {
+    openWhatsApp(
+      serviceMessage(
+        'servicios técnicos y de hardware',
+      ),
+    )
+  }
 
-        <p>
-          Tus datos y el resumen de compra
-          quedaron preparados correctamente.
-        </p>
 
-        <small>
-          En la siguiente etapa conectaremos
-          este formulario con el canal comercial
-          definitivo de STYVEEN LABS.
-        </small>
+  function contactSupport() {
+    openWhatsApp(
+      supportMessage(),
+    )
+  }
 
-      </section>
+
+  function contactGaming() {
+    openWhatsApp(
+      [
+        'Hola, vengo desde la web de GUGLIELMINI.',
+        '',
+        'Quiero realizar una consulta sobre rendimiento, gaming o componentes.',
+        '',
+        'Mi consulta es:',
+      ].join('\n'),
     )
   }
 
 
   return (
-    <section className="contact-page">
+    <section className="g-contact-page">
 
-      <div className="container contact-layout">
+      <div className="container">
 
-        <div className="contact-copy">
+        {/* =====================================
+            HERO
+        ===================================== */}
 
-          <span className="eyebrow">
-            STYVEEN LABS // CONTACTO
-          </span>
+        <Reveal>
 
-          <h1>
-            HABLEMOS DE
-            <span> TU PC.</span>
-          </h1>
+          <header className="g-contact-header">
 
-          <p>
-            Completa tus datos para consultar
-            por un equipo o continuar con tu
-            solicitud de compra.
-          </p>
-
-        </div>
+            <span className="g-label">
+              CONTACTO
+            </span>
 
 
-        <form
-          className="contact-form"
-          onSubmit={submitForm}
-        >
-
-          <label>
-            Nombre
-            <input
-              required
-              name="name"
-              value={form.name}
-              onChange={updateField}
-            />
-          </label>
+            <h1>
+              Hablemos.
+            </h1>
 
 
-          <label>
-            Correo electrónico
-            <input
-              required
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={updateField}
-            />
-          </label>
+            <p>
+              Elige el motivo de tu consulta.
+              Te llevaremos directamente a
+              WhatsApp
+              para que podamos ayudarte.
+            </p>
+
+          </header>
+
+        </Reveal>
 
 
-          <label>
-            Teléfono
-            <input
-              required
-              name="phone"
-              value={form.phone}
-              onChange={updateField}
-            />
-          </label>
 
+        {/* =====================================
+            CONTACT OPTIONS
+        ===================================== */}
 
-          <label>
-            Ciudad / comuna
-            <input
-              required
-              name="city"
-              value={form.city}
-              onChange={updateField}
-            />
-          </label>
+        <div className="g-contact-options">
 
+          <Reveal delay={50}>
 
-          <label className="full-field">
-            Mensaje
+            <button
+              type="button"
+              className="g-contact-option"
+              onClick={contactPurchase}
+            >
 
-            <textarea
-              name="message"
-              rows="5"
-              value={form.message}
-              onChange={updateField}
-            />
-          </label>
+              <div className="g-contact-option-icon">
 
-
-          {checkout &&
-            items.length > 0 && (
-
-              <div className="checkout-preview full-field">
-
-                <span>
-                  Solicitud de compra
-                </span>
-
-                {items.map((item) => (
-                  <strong key={item.id}>
-                    {item.name}
-                  </strong>
-                ))}
-
-                <div>
-                  Total:
-                  {' '}
-                  ${total.toLocaleString('es-CL')}
-                </div>
+                <ShoppingCart
+                  size={24}
+                />
 
               </div>
 
-            )}
+
+              <div className="g-contact-option-content">
+
+                <span>
+                  COMPRA
+                </span>
+
+                <h2>
+                  Quiero comprar un PC
+                </h2>
+
+                <p>
+                  Consulta por equipos disponibles,
+                  métodos de pago o coordinación
+                  de entrega.
+                </p>
+
+              </div>
 
 
-          <button
-            type="submit"
-            className="primary-button full-field"
-          >
-            {checkout
-              ? 'REGISTRAR SOLICITUD DE COMPRA'
-              : 'ENVIAR CONSULTA'}
-          </button>
+              <ArrowRight
+                className="g-contact-arrow"
+                size={21}
+              />
 
-        </form>
+            </button>
+
+          </Reveal>
+
+
+          <Reveal delay={100}>
+
+            <button
+              type="button"
+              className="g-contact-option"
+              onClick={contactServices}
+            >
+
+              <div className="g-contact-option-icon">
+
+                <Wrench
+                  size={24}
+                />
+
+              </div>
+
+
+              <div className="g-contact-option-content">
+
+                <span>
+                  SERVICIOS
+                </span>
+
+                <h2>
+                  Necesito un servicio
+                </h2>
+
+                <p>
+                  Armado, mantenimiento,
+                  optimización o actualización
+                  de hardware.
+                </p>
+
+              </div>
+
+
+              <ArrowRight
+                className="g-contact-arrow"
+                size={21}
+              />
+
+            </button>
+
+          </Reveal>
+
+
+          <Reveal delay={150}>
+
+            <button
+              type="button"
+              className="g-contact-option"
+              onClick={contactSupport}
+            >
+
+              <div className="g-contact-option-icon">
+
+                <Headphones
+                  size={24}
+                />
+
+              </div>
+
+
+              <div className="g-contact-option-content">
+
+                <span>
+                  SOPORTE
+                </span>
+
+                <h2>
+                  Necesito ayuda
+                </h2>
+
+                <p>
+                  Soporte relacionado con un
+                  computador, configuración
+                  o servicio realizado.
+                </p>
+
+              </div>
+
+
+              <ArrowRight
+                className="g-contact-arrow"
+                size={21}
+              />
+
+            </button>
+
+          </Reveal>
+
+
+          <Reveal delay={200}>
+
+            <button
+              type="button"
+              className="g-contact-option"
+              onClick={contactGaming}
+            >
+
+              <div className="g-contact-option-icon">
+
+                <Gamepad2
+                  size={24}
+                />
+
+              </div>
+
+
+              <div className="g-contact-option-content">
+
+                <span>
+                  GAMING Y HARDWARE
+                </span>
+
+                <h2>
+                  Tengo una duda técnica
+                </h2>
+
+                <p>
+                  Consulta sobre FPS,
+                  componentes, rendimiento
+                  o futuras mejoras.
+                </p>
+
+              </div>
+
+
+              <ArrowRight
+                className="g-contact-arrow"
+                size={21}
+              />
+
+            </button>
+
+          </Reveal>
+
+
+          <Reveal delay={250}>
+
+            <button
+              type="button"
+              className="g-contact-option"
+              onClick={contactGeneral}
+            >
+
+              <div className="g-contact-option-icon">
+
+                <CircleHelp
+                  size={24}
+                />
+
+              </div>
+
+
+              <div className="g-contact-option-content">
+
+                <span>
+                  GENERAL
+                </span>
+
+                <h2>
+                  Otra consulta
+                </h2>
+
+                <p>
+                  Para cualquier pregunta
+                  que no corresponda a las
+                  categorías anteriores.
+                </p>
+
+              </div>
+
+
+              <ArrowRight
+                className="g-contact-arrow"
+                size={21}
+              />
+
+            </button>
+
+          </Reveal>
+
+        </div>
+    
 
       </div>
 
     </section>
   )
 }
+
 
 export default Contact

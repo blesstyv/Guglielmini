@@ -1,0 +1,17 @@
+{
+  "name": "GUGLIELMINI",
+  "short_name": "GUGLIELMINI",
+  "description": "PCs, hardware y servicios tecnológicos.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

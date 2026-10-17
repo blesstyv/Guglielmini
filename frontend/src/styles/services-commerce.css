@@ -1,0 +1,781 @@
+/* ======================================================
+   GUGLIELMINI
+   SERVICES — COMMERCIAL EXPERIENCE
+====================================================== */
+
+
+/* ======================================================
+   PAGE
+====================================================== */
+
+.g-services-page {
+  min-height: 75vh;
+
+  padding:
+    95px 0 120px;
+
+  background:
+    radial-gradient(
+      circle at 75% 0%,
+      rgba(
+        151,
+        43,
+        209,
+        0.055
+      ),
+      transparent 34%
+    ),
+    #050507;
+}
+
+
+/* ======================================================
+   HEADER
+====================================================== */
+
+.g-services-header {
+  max-width:
+    760px;
+}
+
+
+.g-services-header h1 {
+  margin-top:
+    12px;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    clamp(
+      3.8rem,
+      7vw,
+      6.5rem
+    );
+
+  line-height:
+    0.93;
+
+  letter-spacing:
+    -0.065em;
+}
+
+
+.g-services-header h1 span {
+  color:
+    var(--pink);
+}
+
+
+.g-services-header p {
+  max-width:
+    570px;
+
+  margin-top:
+    22px;
+
+  color:
+    var(--gray);
+
+  font-size:
+    0.86rem;
+
+  line-height:
+    1.7;
+}
+
+
+/* ======================================================
+   LAYOUT
+====================================================== */
+
+.g-services-layout {
+  margin-top:
+    70px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(330px, 420px);
+
+  align-items:
+    start;
+
+  gap:
+    55px;
+}
+
+
+/* ======================================================
+   SERVICE LIST
+====================================================== */
+
+.g-services-list {
+  border-top:
+    1px solid
+    var(--border);
+}
+
+
+.g-service-row {
+  width:
+    100%;
+
+  min-height:
+    105px;
+
+  padding:
+    20px 6px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    48px
+    minmax(0, 1fr)
+    auto
+    20px;
+
+  align-items:
+    center;
+
+  gap:
+    18px;
+
+  border:
+    0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  background:
+    transparent;
+
+  color:
+    var(--white);
+
+  text-align:
+    left;
+
+  cursor:
+    pointer;
+
+  transition:
+    padding-left 0.22s ease,
+    background 0.22s ease;
+}
+
+
+.g-service-row:hover,
+.g-service-row--active {
+  padding-left:
+    15px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.018
+    );
+}
+
+
+/* ======================================================
+   SERVICE ICON
+====================================================== */
+
+.g-service-row-icon {
+  width:
+    44px;
+
+  height:
+    44px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  border:
+    1px solid
+    rgba(
+      242,
+      41,
+      139,
+      0.14
+    );
+
+  border-radius:
+    10px;
+
+  background:
+    rgba(
+      242,
+      41,
+      139,
+      0.035
+    );
+
+  color:
+    var(--pink);
+
+  transition:
+    color 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+
+.g-service-row--active
+.g-service-row-icon {
+  border-color:
+    rgba(
+      217,
+      239,
+      41,
+      0.24
+    );
+
+  background:
+    rgba(
+      217,
+      239,
+      41,
+      0.055
+    );
+
+  color:
+    var(--acid);
+}
+
+
+/* ======================================================
+   SERVICE ROW CONTENT
+====================================================== */
+
+.g-service-row-content {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    5px;
+}
+
+
+.g-service-row-content span {
+  color:
+    var(--acid);
+
+  font-family:
+    var(--mono-font);
+
+  font-size:
+    0.49rem;
+
+  letter-spacing:
+    0.09em;
+}
+
+
+.g-service-row-content strong {
+  font-family:
+    var(--display-font);
+
+  font-size:
+    1.12rem;
+}
+
+
+.g-service-row-price {
+  color:
+    var(--gray);
+
+  font-size:
+    0.66rem;
+
+  white-space:
+    nowrap;
+}
+
+
+.g-service-row-arrow {
+  color:
+    var(--muted);
+
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+
+.g-service-row:hover
+.g-service-row-arrow,
+.g-service-row--active
+.g-service-row-arrow {
+  transform:
+    translateX(3px);
+
+  color:
+    var(--acid);
+}
+
+
+/* ======================================================
+   SERVICE DETAIL
+====================================================== */
+
+.g-service-detail {
+  position:
+    sticky;
+
+  top:
+    145px;
+
+  padding:
+    33px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        242,
+        41,
+        139,
+        0.025
+      ),
+      rgba(
+        255,
+        255,
+        255,
+        0.012
+      )
+    ),
+    #09090c;
+}
+
+
+.g-service-detail-top {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    20px;
+}
+
+
+.g-service-detail-top > strong {
+  color:
+    var(--acid);
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    0.78rem;
+}
+
+
+.g-service-detail h2 {
+  margin-top:
+    14px;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    clamp(
+      2rem,
+      3vw,
+      2.7rem
+    );
+
+  line-height:
+    1;
+}
+
+
+.g-service-description {
+  margin-top:
+    16px;
+
+  color:
+    var(--gray);
+
+  font-size:
+    0.72rem;
+
+  line-height:
+    1.65;
+}
+
+
+/* ======================================================
+   INCLUDED ITEMS
+====================================================== */
+
+.g-service-includes {
+  margin-top:
+    30px;
+
+  padding-top:
+    25px;
+
+  border-top:
+    1px solid
+    var(--border);
+}
+
+
+.g-service-includes > span {
+  color:
+    var(--muted);
+
+  font-family:
+    var(--mono-font);
+
+  font-size:
+    0.48rem;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+.g-service-includes ul {
+  margin-top:
+    16px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    11px;
+
+  list-style:
+    none;
+}
+
+
+.g-service-includes li {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    9px;
+
+  color:
+    var(--gray);
+
+  font-size:
+    0.66rem;
+
+  line-height:
+    1.4;
+}
+
+
+.g-service-includes li svg {
+  flex-shrink:
+    0;
+
+  color:
+    var(--acid);
+}
+
+
+/* ======================================================
+   CONTACT BUTTON
+====================================================== */
+
+.g-service-contact {
+  width:
+    100%;
+
+  margin-top:
+    30px;
+}
+
+
+.g-service-detail > small {
+  margin-top:
+    12px;
+
+  display:
+    block;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.53rem;
+
+  line-height:
+    1.45;
+
+  text-align:
+    center;
+}
+
+
+/* ======================================================
+   PROCESS
+====================================================== */
+
+.g-service-process {
+  padding:
+    100px 0 115px;
+
+  border-top:
+    1px solid
+    var(--border);
+
+  background:
+    #08080b;
+}
+
+
+.g-service-process-header h2 {
+  margin-top:
+    8px;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    clamp(
+      2.5rem,
+      5vw,
+      4.2rem
+    );
+
+  letter-spacing:
+    -0.05em;
+}
+
+
+.g-service-process-line {
+  margin-top:
+    55px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  border-top:
+    1px solid
+    var(--border);
+}
+
+
+.g-service-process-line > div {
+  min-height:
+    170px;
+
+  padding:
+    26px 30px 0 0;
+
+  border-right:
+    1px solid
+    var(--border);
+}
+
+
+.g-service-process-line > div:last-child {
+  border-right:
+    0;
+}
+
+
+.g-service-process-line span {
+  color:
+    var(--acid);
+
+  font-family:
+    var(--mono-font);
+
+  font-size:
+    0.55rem;
+}
+
+
+.g-service-process-line strong {
+  margin-top:
+    17px;
+
+  display:
+    block;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    1rem;
+}
+
+
+.g-service-process-line p {
+  max-width:
+    220px;
+
+  margin-top:
+    8px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.63rem;
+
+  line-height:
+    1.55;
+}
+
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (
+  max-width: 900px
+) {
+
+  .g-services-layout {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      35px;
+  }
+
+
+  .g-service-detail {
+    position:
+      static;
+  }
+
+
+  .g-service-process-line {
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+  }
+
+
+  .g-service-process-line > div {
+    border-bottom:
+      1px solid
+      var(--border);
+  }
+
+}
+
+
+@media (
+  max-width: 650px
+) {
+
+  .g-services-page {
+    padding:
+      70px 0 90px;
+  }
+
+
+  .g-services-header h1 {
+    font-size:
+      4rem;
+  }
+
+
+  .g-services-layout {
+    margin-top:
+      50px;
+  }
+
+
+  .g-service-row {
+    grid-template-columns:
+      44px
+      minmax(0, 1fr)
+      20px;
+
+    gap:
+      13px;
+  }
+
+
+  .g-service-row-price {
+    grid-column:
+      2;
+
+    margin-top:
+      -3px;
+  }
+
+
+  .g-service-row-arrow {
+    grid-column:
+      3;
+
+    grid-row:
+      1 / 3;
+  }
+
+
+  .g-service-detail {
+    padding:
+      26px;
+  }
+
+
+  .g-service-process-line {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .g-service-process-line > div {
+    min-height:
+      auto;
+
+    padding:
+      25px 0;
+
+    border-right:
+      0;
+  }
+
+}

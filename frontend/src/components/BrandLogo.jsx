@@ -14,8 +14,15 @@ function BrandLogo({
     useId()
       .replaceAll(':', '')
 
+  const glowId =
+    useId()
+      .replaceAll(':', '')
+
   const accentGradient =
     `guglielminiAccent-${gradientId}`
+
+  const glowGradient =
+    `guglielminiGlow-${glowId}`
 
 
   return (
@@ -38,29 +45,67 @@ function BrandLogo({
 
           <linearGradient
             id={accentGradient}
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="100%"
+            x1="10%"
+            y1="5%"
+            x2="90%"
+            y2="95%"
           >
+
             <stop
               offset="0%"
               stopColor="#ff2b93"
             />
 
             <stop
-              offset="58%"
-              stopColor="#a52be0"
+              offset="48%"
+              stopColor="#b72be7"
+            />
+
+            <stop
+              offset="72%"
+              stopColor="#d641c7"
             />
 
             <stop
               offset="100%"
               stopColor="#d9ef29"
             />
+
+          </linearGradient>
+
+
+          <linearGradient
+            id={glowGradient}
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
+
+            <stop
+              offset="0%"
+              stopColor="#ff2b93"
+              stopOpacity="0.9"
+            />
+
+            <stop
+              offset="55%"
+              stopColor="#a52be0"
+              stopOpacity="0.8"
+            />
+
+            <stop
+              offset="100%"
+              stopColor="#d9ef29"
+              stopOpacity="0.9"
+            />
+
           </linearGradient>
 
         </defs>
 
+
+        {/* EXTERIOR */}
 
         <polygon
           points="
@@ -71,87 +116,121 @@ function BrandLogo({
             15,88
             15,30
           "
-          fill="#060608"
-          stroke={`url(#${accentGradient})`}
+          fill="#050507"
+          stroke={`url(#${glowGradient})`}
           strokeWidth="5"
+          strokeLinejoin="round"
         />
 
+
+        {/* SEGUNDO CONTORNO */}
 
         <polygon
           points="
-            60,15
-            95,35
-            95,82
-            60,102
-            25,82
-            25,35
+            60,14
+            96,35
+            96,82
+            60,103
+            24,82
+            24,35
           "
-          fill="none"
-          stroke="#45454c"
+          fill="#08080b"
+          stroke="#383840"
           strokeWidth="2.5"
+          strokeLinejoin="round"
         />
 
 
-        <path
-          d="
-            M82 40
-            H57
-            C44 40 36 48 36 60
-            C36 72 44 80 57 80
-            H73
-            V70
-            H58
-            C51 70 47 66 47 60
-            C47 54 51 50 58 50
-            H82
-            Z
+        {/* PUNTO SUPERIOR */}
 
-            M73 63
-            H91
-            V89
-            L80 95
-            V73
-            H73
-            Z
-          "
-          fill={`url(#${accentGradient})`}
-        />
-
-
-        <rect
-          x="31"
-          y="96"
-          width="34"
-          height="3"
-          rx="1.5"
-          fill="#f4f4f4"
-          opacity="0.8"
-        />
-
-
-        <rect
-          x="69"
-          y="96"
-          width="17"
-          height="3"
-          rx="1.5"
+        <circle
+          cx="60"
+          cy="22"
+          r="4"
           fill="#d9ef29"
         />
 
 
         <circle
           cx="60"
-          cy="19"
-          r="3"
+          cy="22"
+          r="7"
           fill="#d9ef29"
+          opacity="0.10"
+        />
+
+
+        {/* G */}
+
+        <path
+          d="
+            M84 40
+            H57
+            C43 40 34 49 34 61
+            C34 74 43 83 57 83
+            H75
+            V70
+            H59
+            C51 70 47 67 47 61
+            C47 55 51 51 59 51
+            H84
+            Z
+
+            M71 62
+            H91
+            V88
+            L79 95
+            V74
+            H71
+            Z
+          "
+          fill={`url(#${accentGradient})`}
+        />
+
+
+        {/* DETALLES INFERIORES */}
+
+        <rect
+          x="31"
+          y="96"
+          width="32"
+          height="4"
+          rx="2"
+          fill="#f5f5f2"
+          opacity="0.92"
+        />
+
+
+        <rect
+          x="68"
+          y="96"
+          width="21"
+          height="4"
+          rx="2"
+          fill="#d9ef29"
+        />
+
+
+        {/* PUNTA */}
+
+        <polygon
+          points="
+            48,119
+            72,119
+            60,135
+          "
+          fill="#050507"
+          stroke="#ff2b93"
+          strokeWidth="3"
+          strokeLinejoin="round"
         />
 
 
         <polygon
           points="
-            49,120
-            71,120
-            60,134
+            53,122
+            67,122
+            60,131
           "
           fill="#ff2b93"
         />

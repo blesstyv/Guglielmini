@@ -1,0 +1,611 @@
+/* ======================================================
+   GUGLIELMINI
+   CATALOG — FINAL
+====================================================== */
+
+
+.g-catalog-page {
+  min-height:
+    72vh;
+
+  padding:
+    90px 0 120px;
+
+  background:
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(
+        151,
+        43,
+        209,
+        0.045
+      ),
+      transparent 30%
+    ),
+    #050507;
+}
+
+
+/* ======================================================
+   HEADER
+====================================================== */
+
+.g-catalog-header {
+  max-width:
+    730px;
+}
+
+
+.g-catalog-header h1 {
+  margin-top:
+    10px;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    clamp(
+      3.8rem,
+      7vw,
+      6.3rem
+    );
+
+  line-height:
+    0.93;
+
+  letter-spacing:
+    -0.065em;
+}
+
+
+.g-catalog-header h1 span {
+  color:
+    var(--pink);
+}
+
+
+.g-catalog-header p {
+  max-width:
+    580px;
+
+  margin-top:
+    20px;
+
+  color:
+    var(--gray);
+
+  font-size:
+    0.8rem;
+
+  line-height:
+    1.7;
+}
+
+
+/* ======================================================
+   TOOLBAR
+====================================================== */
+
+.g-catalog-toolbar {
+  margin-top:
+    55px;
+
+  padding:
+    18px 0;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    30px;
+
+  border-top:
+    1px solid
+    var(--border);
+
+  border-bottom:
+    1px solid
+    var(--border);
+}
+
+
+.g-catalog-count {
+  display:
+    flex;
+
+  align-items:
+    baseline;
+
+  gap:
+    8px;
+}
+
+
+.g-catalog-count strong {
+  color:
+    var(--acid);
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    1.4rem;
+}
+
+
+.g-catalog-count span {
+  color:
+    var(--muted);
+
+  font-size:
+    0.62rem;
+}
+
+
+/* ======================================================
+   CONTROLS
+====================================================== */
+
+.g-catalog-controls {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    9px;
+}
+
+
+.g-catalog-control {
+  min-height:
+    39px;
+
+  padding:
+    0 11px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    6px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    7px;
+
+  background:
+    #0a0a0e;
+
+  color:
+    var(--muted);
+}
+
+
+.g-catalog-control select {
+  min-height:
+    37px;
+
+  border:
+    0;
+
+  outline:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    var(--gray);
+
+  font-size:
+    0.62rem;
+
+  cursor:
+    pointer;
+}
+
+
+.g-catalog-control option {
+  background:
+    #0a0a0e;
+
+  color:
+    var(--white);
+}
+
+
+.g-catalog-clear {
+  min-height:
+    39px;
+
+  padding:
+    0 13px;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    6px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    7px;
+
+  background:
+    transparent;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.57rem;
+
+  font-weight:
+    600;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.g-catalog-clear:hover {
+  border-color:
+    rgba(
+      242,
+      41,
+      139,
+      0.28
+    );
+
+  color:
+    var(--pink);
+}
+
+
+/* ======================================================
+   QUERY
+====================================================== */
+
+.g-catalog-search-query {
+  margin-top:
+    25px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.64rem;
+}
+
+
+.g-catalog-search-query strong {
+  color:
+    var(--white);
+}
+
+
+/* ======================================================
+   GRID
+====================================================== */
+
+.g-catalog-grid {
+  margin-top:
+    42px;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    25px;
+}
+
+
+.g-catalog-grid:has(
+  > :only-child
+) {
+  grid-template-columns:
+    minmax(
+      300px,
+      430px
+    );
+}
+
+
+/* ======================================================
+   EMPTY
+====================================================== */
+
+.g-catalog-empty {
+  min-height:
+    380px;
+
+  padding:
+    60px 20px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  text-align:
+    center;
+}
+
+
+.g-catalog-empty-icon {
+  width:
+    62px;
+
+  height:
+    62px;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  border:
+    1px solid
+    rgba(
+      242,
+      41,
+      139,
+      0.16
+    );
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(
+      242,
+      41,
+      139,
+      0.04
+    );
+
+  color:
+    var(--pink);
+}
+
+
+.g-catalog-empty h2 {
+  margin-top:
+    22px;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    2rem;
+}
+
+
+.g-catalog-empty p {
+  margin:
+    10px 0 24px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.7rem;
+}
+
+
+/* ======================================================
+   BOTTOM
+====================================================== */
+
+.g-catalog-bottom {
+  margin-top:
+    90px;
+
+  padding-top:
+    50px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    50px;
+
+  border-top:
+    1px solid
+    var(--border);
+}
+
+
+.g-catalog-bottom h2 {
+  margin-top:
+    7px;
+
+  font-family:
+    var(--display-font);
+
+  font-size:
+    clamp(
+      1.8rem,
+      3vw,
+      2.7rem
+    );
+}
+
+
+.g-catalog-bottom p {
+  max-width:
+    500px;
+
+  margin-top:
+    8px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    0.68rem;
+
+  line-height:
+    1.55;
+}
+
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (
+  max-width: 1000px
+) {
+
+  .g-catalog-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+}
+
+
+@media (
+  max-width: 720px
+) {
+
+  .g-catalog-page {
+    padding:
+      65px 0 90px;
+  }
+
+
+  .g-catalog-header h1 {
+    font-size:
+      4rem;
+  }
+
+
+  .g-catalog-toolbar {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+
+  .g-catalog-controls {
+    width:
+      100%;
+  }
+
+
+  .g-catalog-control {
+    flex:
+      1;
+  }
+
+
+  .g-catalog-control select {
+    width:
+      100%;
+  }
+
+
+  .g-catalog-grid,
+  .g-catalog-grid:has(
+    > :only-child
+  ) {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .g-catalog-bottom {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+
+
+  .g-catalog-bottom
+  .secondary-button {
+    width:
+      100%;
+  }
+
+}
+
+
+@media (
+  max-width: 450px
+) {
+
+  .g-catalog-controls {
+    flex-direction:
+      column;
+  }
+
+
+  .g-catalog-control,
+  .g-catalog-clear {
+    width:
+      100%;
+  }
+
+}

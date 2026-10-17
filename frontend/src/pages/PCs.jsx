@@ -1,22 +1,37 @@
 import {
+  RotateCcw,
+  SearchX,
+  SlidersHorizontal,
+} from 'lucide-react'
+
+import {
   useMemo,
 } from 'react'
 
 import {
+  Link,
   useSearchParams,
 } from 'react-router-dom'
 
-import PcCard from '../components/PcCard.jsx'
+import PcCard
+  from '../components/PcCard.jsx'
+
+import Reveal
+  from '../components/Reveal.jsx'
 
 import {
   pcs,
 } from '../data/pcs.js'
+
+import '../styles/catalog-final.css'
+
 
 function PCs() {
   const [
     searchParams,
     setSearchParams,
   ] = useSearchParams()
+
 
   const query =
     searchParams.get('q') || ''
@@ -31,57 +46,99 @@ function PCs() {
   const categories = [
     'Todas',
     ...new Set(
-      pcs.map((pc) => pc.category),
+      pcs.map(
+        (pc) =>
+          pc.category,
+      ),
     ),
   ]
 
 
-  const filtered = useMemo(() => {
-    const normalizedQuery =
-      query.toLowerCase().trim()
-
-    let result = pcs.filter((pc) => {
-      const matchesSearch =
-        !normalizedQuery ||
-        pc.name
+  const filtered =
+    useMemo(() => {
+      const normalizedQuery =
+        query
           .toLowerCase()
-          .includes(normalizedQuery) ||
-        pc.shortDescription
-          .toLowerCase()
-          .includes(normalizedQuery) ||
-        pc.quickSpecs
-          .join(' ')
-          .toLowerCase()
-          .includes(normalizedQuery)
+          .trim()
 
-      const matchesCategory =
-        category === 'Todas' ||
-        pc.category === category
 
-      return (
-        matchesSearch &&
-        matchesCategory
-      )
-    })
+      let result =
+        pcs.filter(
+          (pc) => {
 
-    if (sort === 'price-asc') {
-      result = [...result].sort(
-        (a, b) => a.price - b.price,
-      )
-    }
+            const searchableText = [
+              pc.name,
+              pc.code,
+              pc.category,
+              pc.shortDescription,
+              pc.description,
+              ...(pc.quickSpecs || []),
+              ...(pc.highlights || [])
+                .flatMap(
+                  (item) => [
+                    item.label,
+                    item.value,
+                  ],
+                ),
+            ]
+              .join(' ')
+              .toLowerCase()
 
-    if (sort === 'price-desc') {
-      result = [...result].sort(
-        (a, b) => b.price - a.price,
-      )
-    }
 
-    return result
-  }, [
-    query,
-    category,
-    sort,
-  ])
+            const matchesSearch =
+              !normalizedQuery ||
+              searchableText.includes(
+                normalizedQuery,
+              )
+
+
+            const matchesCategory =
+              category === 'Todas' ||
+              pc.category === category
+
+
+            return (
+              matchesSearch &&
+              matchesCategory
+            )
+          },
+        )
+
+
+      if (
+        sort === 'price-asc'
+      ) {
+        result =
+          [...result].sort(
+            (a, b) =>
+              a.price - b.price,
+          )
+      }
+
+
+      if (
+        sort === 'price-desc'
+      ) {
+        result =
+          [...result].sort(
+            (a, b) =>
+              b.price - a.price,
+          )
+      }
+
+
+      return result
+    }, [
+      query,
+      category,
+      sort,
+    ])
+
+
+  const hasFilters =
+    Boolean(query) ||
+    category !== 'Todas' ||
+    sort !== 'default'
 
 
   function updateParam(
@@ -89,7 +146,10 @@ function PCs() {
     value,
   ) {
     const next =
-      new URLSearchParams(searchParams)
+      new URLSearchParams(
+        searchParams,
+      )
+
 
     if (
       !value ||
@@ -98,148 +158,317 @@ function PCs() {
     ) {
       next.delete(key)
     } else {
-      next.set(key, value)
+      next.set(
+        key,
+        value,
+      )
     }
+
 
     setSearchParams(next)
   }
 
 
+  function clearFilters() {
+    setSearchParams({})
+  }
+
+
   return (
-    <section className="catalog-page">
+    <section className="g-catalog-page">
 
       <div className="container">
 
-        <div className="catalog-heading">
+        {/* =====================================
+            HEADER
+        ===================================== */}
 
-          <span className="eyebrow">
-            STYVEEN LABS
-          </span>
+        <Reveal>
 
-          <h1>
-            PCs <span>DISPONIBLES.</span>
-          </h1>
+          <header className="g-catalog-header">
 
-          <p>
-            Revisa nuestros equipos disponibles,
-            compara sus componentes y selecciona
-            el que mejor se adapte a tu uso.
-          </p>
-
-        </div>
+            <span className="g-label">
+              EQUIPOS
+            </span>
 
 
-        <div className="catalog-toolbar">
-
-          <div className="catalog-result-count">
-
-            <strong>
-              {filtered.length}
-            </strong>
-
-            {filtered.length === 1
-              ? ' PC disponible'
-              : ' PCs disponibles'}
-
-          </div>
+            <h1>
+              PCs
+              <span> disponibles.</span>
+            </h1>
 
 
-          <div className="catalog-controls">
+            <p>
+              Revisa los equipos actualmente
+              publicados, sus componentes,
+              pruebas realizadas y rendimiento
+              antes de tomar una decisión.
+            </p>
 
-            <select
-              value={category}
-              onChange={(event) =>
-                updateParam(
-                  'category',
-                  event.target.value,
-                )
-              }
-            >
-              {categories.map((item) => (
-                <option
-                  value={item}
-                  key={item}
+          </header>
+
+        </Reveal>
+
+
+
+        {/* =====================================
+            TOOLBAR
+        ===================================== */}
+
+        <Reveal delay={70}>
+
+          <div className="g-catalog-toolbar">
+
+            <div className="g-catalog-count">
+
+              <strong>
+                {filtered.length}
+              </strong>
+
+
+              <span>
+
+                {filtered.length === 1
+                  ? 'equipo encontrado'
+                  : 'equipos encontrados'}
+
+              </span>
+
+            </div>
+
+
+            <div className="g-catalog-controls">
+
+              <div className="g-catalog-control">
+
+                <SlidersHorizontal
+                  size={15}
+                />
+
+
+                <select
+                  value={category}
+                  onChange={
+                    (event) =>
+                      updateParam(
+                        'category',
+                        event.target.value,
+                      )
+                  }
+                  aria-label="Filtrar por categoría"
                 >
-                  {item}
-                </option>
-              ))}
-            </select>
+
+                  {categories.map(
+                    (item) => (
+
+                      <option
+                        value={item}
+                        key={item}
+                      >
+                        {item}
+                      </option>
+
+                    ),
+                  )}
+
+                </select>
+
+              </div>
 
 
-            <select
-              value={sort}
-              onChange={(event) =>
-                updateParam(
-                  'sort',
-                  event.target.value,
-                )
-              }
-            >
-              <option value="default">
-                Ordenar
-              </option>
+              <div className="g-catalog-control">
 
-              <option value="price-asc">
-                Menor precio
-              </option>
+                <select
+                  value={sort}
+                  onChange={
+                    (event) =>
+                      updateParam(
+                        'sort',
+                        event.target.value,
+                      )
+                  }
+                  aria-label="Ordenar equipos"
+                >
 
-              <option value="price-desc">
-                Mayor precio
-              </option>
-            </select>
+                  <option value="default">
+                    Orden predeterminado
+                  </option>
+
+                  <option value="price-asc">
+                    Menor precio
+                  </option>
+
+                  <option value="price-desc">
+                    Mayor precio
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              {hasFilters && (
+
+                <button
+                  type="button"
+                  className="g-catalog-clear"
+                  onClick={clearFilters}
+                >
+
+                  <RotateCcw
+                    size={14}
+                  />
+
+                  LIMPIAR
+
+                </button>
+
+              )}
+
+            </div>
 
           </div>
 
-        </div>
+        </Reveal>
 
+
+
+        {/* =====================================
+            SEARCH QUERY
+        ===================================== */}
 
         {query && (
-          <div className="search-message">
 
-            Resultados para:
+          <div className="g-catalog-search-query">
+
+            <span>
+              Resultados para
+            </span>
 
             <strong>
               “{query}”
             </strong>
 
           </div>
+
         )}
 
 
+
+        {/* =====================================
+            RESULTS
+        ===================================== */}
+
         {filtered.length > 0 ? (
 
-          <div className="catalog-grid">
+          <div className="g-catalog-grid">
 
-            {filtered.map((pc) => (
-              <PcCard
-                pc={pc}
-                key={pc.id}
-              />
-            ))}
+            {filtered.map(
+              (pc) => (
+
+                <PcCard
+                  pc={pc}
+                  key={pc.id}
+                />
+
+              ),
+            )}
 
           </div>
 
         ) : (
 
-          <div className="empty-results">
+          <Reveal>
 
-            <h2>
-              No encontramos PCs
-            </h2>
+            <div className="g-catalog-empty">
 
-            <p>
-              Prueba con otra búsqueda
-              o categoría.
-            </p>
+              <div className="g-catalog-empty-icon">
+
+                <SearchX
+                  size={29}
+                />
+
+              </div>
+
+
+              <h2>
+                No encontramos equipos.
+              </h2>
+
+
+              <p>
+                La búsqueda actual no coincide
+                con ningún PC publicado.
+              </p>
+
+
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={clearFilters}
+              >
+
+                <RotateCcw
+                  size={16}
+                />
+
+                LIMPIAR BÚSQUEDA
+
+              </button>
+
+            </div>
+
+          </Reveal>
+
+        )}
+
+
+
+        {/* =====================================
+            FUTURE INVENTORY NOTE
+        ===================================== */}
+
+        <Reveal>
+
+          <div className="g-catalog-bottom">
+
+            <div>
+
+              <span className="g-label">
+                INVENTARIO
+              </span>
+
+              <h2>
+                ¿No encuentras lo que buscas?
+              </h2>
+
+              <p>
+                También puedes consultar por
+                armado, upgrades o futuras
+                configuraciones.
+              </p>
+
+            </div>
+
+
+            <Link
+              to="/contact"
+              className="secondary-button"
+            >
+
+              CONTACTAR
+
+            </Link>
 
           </div>
 
-        )}
+        </Reveal>
 
       </div>
 
     </section>
   )
 }
+
 
 export default PCs

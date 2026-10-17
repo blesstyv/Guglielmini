@@ -10,21 +10,21 @@ import {
   BrowserRouter,
 } from 'react-router-dom'
 
-import App from './App.jsx'
+import App
+  from './App.jsx'
 
-import {
-  CartProvider,
-} from './context/CartContext.jsx'
+import CartProvider
+  from './context/CartProvider.jsx'
 
 import './index.css'
-
-import './styles/refinements.css'
 
 import './styles/guglielmini-theme.css'
 
 
 createRoot(
-  document.getElementById('root'),
+  document.getElementById(
+    'root',
+  ),
 ).render(
 
   <StrictMode>

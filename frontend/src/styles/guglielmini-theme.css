@@ -3947,3 +3947,58 @@ statusPulse {
   }
 
 }
+
+/* ======================================================
+   PRODUCT COMMERCIAL ACTIONS
+====================================================== */
+
+.product-add-cart-button {
+  width: fit-content;
+
+  margin-top: 14px;
+
+  padding: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  font-family: inherit;
+
+  font-size: 0.65rem;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.product-add-cart-button:hover {
+  color: var(--acid);
+
+  transform:
+    translateX(3px);
+}
+
+
+.text-action-button {
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  cursor: pointer;
+}

@@ -1,10 +1,11 @@
 import {
   ArrowRight,
-  Check,
+  CheckCircle2,
   Cpu,
   Gauge,
   HardDrive,
   MemoryStick,
+  MessageCircle,
   ShieldCheck,
   Wrench,
   Zap,
@@ -21,6 +22,13 @@ import {
   pcs,
 } from '../data/pcs.js'
 
+import {
+  openWhatsApp,
+  productPurchaseMessage,
+} from '../utils/whatsapp.js'
+
+import '../styles/home-final.css'
+
 
 function Home() {
   const pc =
@@ -30,94 +38,128 @@ function Home() {
     ) || pcs[0]
 
 
+  function buyPc() {
+    openWhatsApp(
+      productPurchaseMessage(pc),
+    )
+  }
+
+
   return (
     <>
 
-      {/* ======================================
+      {/* =====================================
           HERO
-      ====================================== */}
+      ===================================== */}
 
-      <section className="g-hero">
+      <section className="g-home-hero">
 
-        <div className="g-hero-orb" />
+        <div className="g-home-hero-glow" />
 
 
-        <div className="container g-hero-grid">
+        <div className="container g-home-hero-grid">
 
           <Reveal
             direction="left"
           >
 
-            <div className="g-hero-content">
+            <div className="g-home-hero-copy">
 
               <span className="g-label">
                 GUGLIELMINI
               </span>
 
 
-              <h1>
-                Hardware
-                <br />
+              <h1 className="g-home-hero-title">
 
-                <span>
-                  Probado y optimizado
+                <span className="g-home-hero-title-main">
+                  PCs Armados
                 </span>
+
+                <span className="g-home-hero-title-accent">
+                  configurados y
+                </span>
+
+                <span className="g-home-hero-title-accent">
+                  disponibles.
+                </span>
+
               </h1>
 
 
               <p>
-                PCs armados,
-                configurados y sometidos
-                a pruebas reales antes
-                de publicarse.
+                Equipos configurados y revisados
+                antes de publicarse, con sus
+                componentes, pruebas y rendimiento
+                claramente informados.
               </p>
 
 
-              <div className="g-hero-actions">
+              <div className="g-home-hero-actions">
 
                 <Link
                   to={`/pcs/${pc.slug}`}
                   className="primary-button"
                 >
+
                   VER PC DISPONIBLE
 
                   <ArrowRight
-                    size={18}
+                    size={17}
                   />
+
                 </Link>
 
 
-                <Link
-                  to="/services"
+                <button
+                  type="button"
                   className="secondary-button"
+                  onClick={buyPc}
                 >
-                  SERVICIOS
-                </Link>
+
+                  <MessageCircle
+                    size={17}
+                  />
+
+                  COMPRAR AHORA
+
+                </button>
 
               </div>
 
 
-              <div className="g-mini-proof">
+              <div className="g-home-proof">
 
                 <span>
+
                   <ShieldCheck
-                    size={17}
+                    size={16}
                   />
-                  Validado
+
+                  Equipo probado
+
                 </span>
 
+
                 <span>
+
                   <Gauge
-                    size={17}
+                    size={16}
                   />
+
                   Benchmarks reales
+
                 </span>
 
+
                 <span>
+
                   <Wrench
-                    size={17}
+                    size={16}
                   />
+
                   Upgrade posible
+
                 </span>
 
               </div>
@@ -127,29 +169,31 @@ function Home() {
           </Reveal>
 
 
+
           <Reveal
             direction="right"
-            delay={150}
+            delay={120}
           >
 
-            <Link
-              to={`/pcs/${pc.slug}`}
-              className="hero-product-visual"
-            >
+            <div className="g-home-product-visual">
 
-              <div className="hero-product-glow" />
+              <Link
+                to={`/pcs/${pc.slug}`}
+                className="g-home-product-image"
+              >
+
+                <img
+                  src={pc.images[0]}
+                  alt={pc.name}
+                />
+
+              </Link>
 
 
-              <img
-                src={pc.images[0]}
-                alt={pc.name}
-              />
-
-
-              <div className="hero-product-price">
+              <div className="g-home-product-floating">
 
                 <span>
-                  PC-001
+                  {pc.code}
                 </span>
 
                 <strong>
@@ -161,7 +205,8 @@ function Home() {
 
               </div>
 
-            </Link>
+
+            </div>
 
           </Reveal>
 
@@ -171,13 +216,13 @@ function Home() {
 
 
 
-      {/* ======================================
-          MOVING STRIP
-      ====================================== */}
+      {/* =====================================
+          TECH STRIP
+      ===================================== */}
 
-      <section className="tech-strip">
+      <section className="g-home-strip">
 
-        <div className="tech-strip-track">
+        <div className="g-home-strip-track">
 
           <TechItem
             icon={<Cpu />}
@@ -201,16 +246,14 @@ function Home() {
 
           <TechItem
             icon={<Gauge />}
-            text="BENCHMARKS REALES"
+            text="PRUEBAS REALES"
           />
 
           <TechItem
             icon={<ShieldCheck />}
-            text="0 ERRORES EN PRUEBAS"
+            text="PC-001 VALIDADO"
           />
 
-
-          {/* duplicado para loop */}
 
           <TechItem
             icon={<Cpu />}
@@ -238,25 +281,26 @@ function Home() {
 
 
 
-      {/* ======================================
-          PC DESTACADO
-      ====================================== */}
+      {/* =====================================
+          FEATURED PC
+      ===================================== */}
 
-      <section className="featured-machine">
+      <section className="g-home-featured">
 
-        <div className="container featured-machine-grid">
+        <div className="container g-home-featured-grid">
 
           <Reveal>
 
-            <div className="featured-machine-image">
+            <div className="g-home-featured-image">
 
               <img
                 src={pc.images[1]}
-                alt={pc.name}
+                alt={`Interior de ${pc.name}`}
               />
 
-              <span className="image-index">
-                01 / EQUIPO DISPONIBLE
+
+              <span>
+                PC-001 / EQUIPO DISPONIBLE
               </span>
 
             </div>
@@ -268,10 +312,10 @@ function Home() {
             direction="right"
           >
 
-            <div className="featured-machine-info">
+            <div className="g-home-featured-info">
 
               <span className="g-label">
-                DISPONIBLE
+                EQUIPO ACTUAL
               </span>
 
 
@@ -281,11 +325,11 @@ function Home() {
 
 
               <p>
-                {pc.shortDescription}
+                {pc.description}
               </p>
 
 
-              <div className="featured-spec-line">
+              <div className="g-home-featured-specs">
 
                 {pc.highlights.map(
                   (item) => (
@@ -310,32 +354,55 @@ function Home() {
               </div>
 
 
-              <div className="featured-price">
+              <div className="g-home-featured-price">
 
-                <small>
+                <span>
                   PRECIO
-                </small>
+                </span>
 
                 <strong>
+
                   $
                   {pc.price.toLocaleString(
                     'es-CL',
                   )}
+
                 </strong>
 
               </div>
 
 
-              <Link
-                to={`/pcs/${pc.slug}`}
-                className="text-action"
-              >
+              <div className="g-home-featured-actions">
 
-                EXPLORAR EQUIPO
+                <Link
+                  to={`/pcs/${pc.slug}`}
+                  className="primary-button"
+                >
 
-                <ArrowRight size={17} />
+                  VER EQUIPO
 
-              </Link>
+                  <ArrowRight
+                    size={17}
+                  />
+
+                </Link>
+
+
+                <button
+                  type="button"
+                  className="secondary-button"
+                  onClick={buyPc}
+                >
+
+                  <MessageCircle
+                    size={17}
+                  />
+
+                  CONSULTAR COMPRA
+
+                </button>
+
+              </div>
 
             </div>
 
@@ -347,58 +414,72 @@ function Home() {
 
 
 
-      {/* ======================================
-          PROCESO — SIN TARJETAS
-      ====================================== */}
+      {/* =====================================
+          WHY TRUST
+      ===================================== */}
 
-      <section className="minimal-process">
+      <section className="g-home-trust">
 
         <div className="container">
 
           <Reveal>
 
-            <header className="minimal-section-header">
+            <header className="g-home-section-header">
 
               <span className="g-label">
-                PROCESO
+                ANTES DE PUBLICAR
               </span>
 
+
               <h2>
-                Antes de vender,
-                <span>
-                  {' '}comprobamos.
-                </span>
+                El equipo se
+                <span> comprueba.</span>
               </h2>
+
+
+              <p>
+                La información del PC no se basa
+                solamente en especificaciones.
+                También registramos pruebas realizadas
+                sobre la unidad disponible.
+              </p>
 
             </header>
 
           </Reveal>
 
 
-          <div className="process-line">
+          <div className="g-home-trust-line">
 
-            <ProcessStep
+            <TrustItem
               number="01"
-              title="Armado"
-              text="Montaje y compatibilidad."
+              title="Memoria"
+              value="0 errores"
+              text="MemTest86"
             />
 
-            <ProcessStep
+
+            <TrustItem
               number="02"
-              title="Configuración"
-              text="BIOS, Windows y drivers."
+              title="Procesador"
+              value="0 errores"
+              text="Prueba de carga"
             />
 
-            <ProcessStep
+
+            <TrustItem
               number="03"
-              title="Pruebas"
-              text="RAM, CPU, SSD y temperaturas."
+              title="SSD"
+              value="100%"
+              text="Vida reportada"
             />
 
-            <ProcessStep
+
+            <TrustItem
               number="04"
               title="Gaming"
-              text="Rendimiento real en juegos."
+              value="Probado"
+              text="Uso y benchmarks reales"
             />
 
           </div>
@@ -406,11 +487,15 @@ function Home() {
 
           <Link
             to="/proceso-armado"
-            className="text-action process-action"
+            className="g-home-text-link"
           >
+
             VER PROCESO COMPLETO
 
-            <ArrowRight size={17} />
+            <ArrowRight
+              size={16}
+            />
+
           </Link>
 
         </div>
@@ -419,41 +504,104 @@ function Home() {
 
 
 
-      {/* ======================================
-          SERVICES CTA
-      ====================================== */}
+      {/* =====================================
+          SERVICES
+      ===================================== */}
 
-      <section className="home-services-cta">
+      <section className="g-home-services">
 
-        <div className="container services-cta-layout">
+        <div className="container g-home-services-layout">
 
-          <div>
+          <Reveal>
 
-            <span className="g-label">
-              SERVICIOS
-            </span>
+            <div>
 
-            <h2>
-              ¿Ya tienes un PC?
-            </h2>
-
-            <p>
-              También realizamos armado,
-              mantenimiento, optimización
-              y upgrades.
-            </p>
-
-          </div>
+              <span className="g-label">
+                SERVICIOS
+              </span>
 
 
-          <Link
-            to="/services"
-            className="primary-button"
-          >
-            VER SERVICIOS
+              <h2>
+                También trabajamos
+                con tu PC.
+              </h2>
 
-            <ArrowRight size={18} />
-          </Link>
+
+              <p>
+                Armado, mantenimiento,
+                optimización y mejoras de hardware
+                con atención directa.
+              </p>
+
+            </div>
+
+          </Reveal>
+
+
+          <Reveal delay={80}>
+
+            <div className="g-home-services-list">
+
+              <span>
+
+                <CheckCircle2
+                  size={16}
+                />
+
+                Armado de PC
+
+              </span>
+
+
+              <span>
+
+                <CheckCircle2
+                  size={16}
+                />
+
+                Optimización Gamer
+
+              </span>
+
+
+              <span>
+
+                <CheckCircle2
+                  size={16}
+                />
+
+                Mantenimiento
+
+              </span>
+
+
+              <span>
+
+                <CheckCircle2
+                  size={16}
+                />
+
+                Upgrade de hardware
+
+              </span>
+
+
+              <Link
+                to="/services"
+                className="primary-button"
+              >
+
+                VER SERVICIOS
+
+                <ArrowRight
+                  size={17}
+                />
+
+              </Link>
+
+            </div>
+
+          </Reveal>
 
         </div>
 
@@ -469,43 +617,50 @@ function TechItem({
   text,
 }) {
   return (
-    <div className="tech-strip-item">
+    <div className="g-home-strip-item">
+
       {icon}
-      <span>{text}</span>
+
+      <span>
+        {text}
+      </span>
+
     </div>
   )
 }
 
 
-function ProcessStep({
+function TrustItem({
   number,
   title,
+  value,
   text,
 }) {
   return (
     <Reveal>
 
-      <div className="process-line-item">
+      <article className="g-home-trust-item">
 
-        <span>
+        <span className="g-home-trust-number">
           {number}
         </span>
 
-        <div>
 
-          <Check size={17} />
+        <strong>
+          {title}
+        </strong>
 
-          <strong>
-            {title}
-          </strong>
 
-          <p>
-            {text}
-          </p>
+        <b>
+          {value}
+        </b>
 
-        </div>
 
-      </div>
+        <small>
+          {text}
+        </small>
+
+      </article>
 
     </Reveal>
   )
