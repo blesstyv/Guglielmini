@@ -33,7 +33,7 @@ const services = [
 
     title: 'Armado de PC',
 
-    price: 'Desde $39.990',
+    price: 'Desde $19.990',
 
     description:
       'Montaje completo de computadores, organización del cableado y revisión física de los componentes.',
@@ -56,7 +56,7 @@ const services = [
 
     title: 'Optimización Gamer',
 
-    price: 'Desde $29.990',
+    price: 'Desde $9.990',
 
     description:
       'Configuración orientada a mejorar estabilidad, rendimiento y comportamiento general del computador.',
@@ -79,7 +79,7 @@ const services = [
 
     title: 'Mantenimiento de PC',
 
-    price: 'Desde $24.990',
+    price: 'Desde $19.990',
 
     description:
       'Revisión preventiva del computador para mantener temperaturas, limpieza y funcionamiento adecuados.',
