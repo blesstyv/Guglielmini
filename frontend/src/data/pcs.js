@@ -33,7 +33,7 @@ export const pcs = [
       1,
 
     price:
-      750000,
+      720000,
 
     condition:
       'Equipo armado y probado',
