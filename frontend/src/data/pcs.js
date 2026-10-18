@@ -33,7 +33,7 @@ export const pcs = [
       1,
 
     price:
-      720000,
+      700000,
 
     condition:
       'Equipo armado y probado',
@@ -123,7 +123,7 @@ export const pcs = [
     benchmarks: [
       {
         game: 'Fortnite OG',
-        result: '109 promedio',
+        result: '120 promedio',
         unit: 'FPS',
         settings: '1080p · Performance',
       },
