@@ -1,0 +1,110 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 120 140"
+>
+
+  <defs>
+
+    <linearGradient
+      id="accent"
+      x1="10%"
+      y1="5%"
+      x2="90%"
+      y2="95%"
+    >
+
+      <stop
+        offset="0%"
+        stop-color="#ff2b93"
+      />
+
+      <stop
+        offset="50%"
+        stop-color="#b72be7"
+      />
+
+      <stop
+        offset="100%"
+        stop-color="#d9ef29"
+      />
+
+    </linearGradient>
+
+  </defs>
+
+
+  <polygon
+    points="
+      60,5
+      105,30
+      105,88
+      60,114
+      15,88
+      15,30
+    "
+    fill="#050507"
+    stroke="url(#accent)"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+
+
+  <polygon
+    points="
+      60,15
+      95,35
+      95,82
+      60,103
+      25,82
+      25,35
+    "
+    fill="#08080b"
+    stroke="#45454c"
+    stroke-width="3"
+  />
+
+
+  <circle
+    cx="60"
+    cy="22"
+    r="4"
+    fill="#d9ef29"
+  />
+
+
+  <path
+    d="
+      M84 40
+      H57
+      C43 40 34 49 34 61
+      C34 74 43 83 57 83
+      H75
+      V70
+      H59
+      C51 70 47 67 47 61
+      C47 55 51 51 59 51
+      H84
+      Z
+
+      M71 62
+      H91
+      V88
+      L79 95
+      V74
+      H71
+      Z
+    "
+    fill="url(#accent)"
+  />
+
+
+  <polygon
+    points="
+      48,119
+      72,119
+      60,135
+    "
+    fill="#ff2b93"
+  />
+
+</svg>
