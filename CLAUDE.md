@@ -7,8 +7,8 @@ Sitio comercial de GUGLIELMINI (Chile): PCs armados y probados + servicios (arma
 Web: https://guglielmini.vercel.app · Instagram: @guglielmini.pc · Repo: blesstyv/Guglielmini
 
 ## Estructura
-- `web/` — **versión 3 (activa)**: Next.js 16 App Router + TypeScript + Tailwind CSS 4. Todo se prerenderiza (SSG).
-- `frontend/` — versión 2 (React 19 + Vite). **No borrar**: es la versión recuperable y la que sigue en producción hasta aprobar el cambio.
+- `web/` — **versión 3, en producción desde 2026-11-10** (Vercel Root Directory = `web`): Next.js 16 App Router + TypeScript + Tailwind CSS 4. Todo se prerenderiza (SSG).
+- `frontend/` — versión 2 (React 19 + Vite). **No borrar**: es la versión recuperable (rollback: Root Directory `frontend` + framework Vite, o "Promote" del deploy `dpl_2Ca3PdFXWtDangCvwLaVdig1jiym`).
 - `docs/` — arquitectura, diseño, decisiones, progreso. `docs/PROGRESS.md` = estado actual y próximo paso.
 
 ## Comandos (desde `web/`)
@@ -24,7 +24,7 @@ CHROME_PATH=/usr/bin/google-chrome npm run test:e2e   # Playwright + axe (CHROME
 2. Precio/stock del repo son **históricos**: `commercialDataConfirmedAt: null` ⇒ la UI dice "por confirmar". Sólo el dueño fija una fecha.
 3. WhatsApp sólo por `NEXT_PUBLIC_WHATSAPP_NUMBER` (Vercel env). Nunca escribir números en el código.
 4. Sin secretos en Git. Sin force push. Sin merge a `main` ni deploy a producción sin aprobación del dueño.
-5. Trabajo en la rama `rebuild/guglielmini-v3`. **El dueño hace los commits y el push**: Claude entrega los cambios sin confirmarlos y explica qué cambió.
+5. Por defecto **el dueño hace los commits y el push**: Claude entrega los cambios sin confirmarlos y explica qué cambió, salvo que el dueño pida explícitamente que Claude haga commit/push. Un push a `main` publica en producción automáticamente.
 6. Accesibilidad WCAG 2.2 AA: la suite axe debe quedar en 0 violaciones. Respetar `prefers-reduced-motion`.
 
 ## Dónde está cada cosa (web/src)

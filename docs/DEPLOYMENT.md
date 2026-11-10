@@ -1,6 +1,6 @@
 # Despliegue en Vercel
 
-> Producción sigue sirviendo `frontend/` (v2) hasta que el dueño apruebe el cambio. No hacer los pasos de producción sin esa aprobación.
+> **Estado (2026-11-10):** producción sirve `web/` (v3). Root Directory = `web`, framework Next.js, `NEXT_PUBLIC_WHATSAPP_NUMBER` configurada. Cada push a `main` despliega a producción automáticamente; cada push a otra rama genera una vista previa.
 
 ## Vista previa (sin tocar producción)
 Vercel crea un preview automático por cada push a una rama si el proyecto está conectado a GitHub. Para que la rama v3 construya `web/`:

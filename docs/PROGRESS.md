@@ -14,13 +14,15 @@ _Última actualización: 2026-11-10 (rediseño) — rama `rebuild/guglielmini-v3
 - [x] Pruebas tras el rediseño: 17 unitarias, 49 E2E (estables en 2 corridas), axe 0 violaciones en 14 rutas.
 
 ## Pendiente
-- [ ] **Commits, push y PR: los hace el dueño.** Claude no hace commits en este proyecto (entrega los cambios para revisión).
-- [ ] Fase 9 — Preview en Vercel (ver DEPLOYMENT.md, opción A) y Lighthouse en el preview.
-- [ ] Dueño: confirmar precio/disponibilidad del PC-001, configurar `NEXT_PUBLIC_WHATSAPP_NUMBER`, aprobar logo v3 y guías.
+- [x] Subido a GitHub (commit 39b0088) en `rebuild/guglielmini-v3` y `main`, a pedido del dueño.
+- [x] Vercel: Root Directory `web`, framework Next.js, variable `NEXT_PUBLIC_WHATSAPP_NUMBER` (producción, preview y desarrollo). Deploy de producción READY y verificado en https://guglielmini.vercel.app (WhatsApp activo).
+- [ ] Lighthouse sobre la web publicada.
+- [ ] Eliminar la variable antigua `VITE_WHATSAPP_NUMBER` en Vercel cuando ya no se necesite el rollback a v2.
+- [ ] Dueño: confirmar precio/disponibilidad del PC-001, aprobar logo v3 y guías.
 
 ## Problemas conocidos
 - `npx playwright install` puede fallar en entornos con red restringida → usar `CHROME_PATH`.
 - `SiteFooter` muestra el año de compilación (sitio estático): se actualiza en cada deploy.
 
 ## Siguiente objetivo
-Revisión del rediseño por el dueño; luego commit/push por su parte y preview en Vercel.
+Ajustes de contenido que pida el dueño sobre la web publicada.
